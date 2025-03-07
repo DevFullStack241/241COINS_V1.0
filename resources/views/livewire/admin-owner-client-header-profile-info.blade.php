@@ -30,7 +30,34 @@
                     class="far fa-power-off"></i></a>
             <form action="{{ route('owner.logout') }}" id="ownerLogoutForm" method="POST">@csrf</form>
         </div>
+    @elseif(Auth::guard('client')->check())
+        <!-- Affichage du menu pour le client -->
+        <div class="cart-btn" data-microtip-position="" data-tooltip="">
+            <i class="fal fa-user"></i>
+        </div>
+        <div class="show-reg-form dasbdord-submenu-open">
+            <img src="{{ asset('font_end/assets/images/avatar/5.jpg') }}" alt="">
+        </div>
+        <div class="dashboard-submenu">
+            <div class="dashboard-submenu-title fl-wrap">Bienvenue , <span>{{ $client->name }}</span></div>
+            <ul>
+                <li><a href="{{ route('home') }} "><i class="fal fa-chart-line"></i>Dashboard</a></li>
+                <li><a href="{{ route('client.profile') }} "><i class="fal fa-user-edit"></i>Profil</a></li>
+            </ul>
+            <a href="{{ route('client.logout') }}"
+                onclick="event.preventDefault(); document.getElementById('clientLogoutForm').submit();"
+                class="color-bg db_log-out">
+                <i class="far fa-power-off"></i> Déconnexion
+            </a>
+            <form action="{{ route('client.logout') }}" id="clientLogoutForm" method="POST">@csrf</form>
+        </div>
+    @else
+        <!-- Affichage si l'utilisateur n'est pas connecté -->
+        <div class="add-list_wrap">
+            <a href="{{ route('landing') }}" class="add-list color-bg">
+                <i class="fal fa-user"></i> <span>Se connecter</span>
+            </a>
+        </div>
     @endif
-
 
 </div>

@@ -13,20 +13,7 @@
     </div>
     <!-- nav-button-wrap end-->
     <!--  login btn -->
-    @if (Auth::guard('client')->check())
-        <div class="add-list_wrap">
-            <a href="{{ route('client.logout') }}"
-                onclick="event.preventDefault();document.getElementById('clientLogoutForm').submit();"
-                class="add-list color-bg"><i class="fal fa-user"></i> <span>Se
-                    déconnecter</span></a>
-            <form action="{{ route('client.logout') }}" id="clientLogoutForm" method="POST">@csrf</form>
-        </div>
-    @else
-        <div class="add-list_wrap">
-            <a href="{{ route('landing') }}" class="add-list color-bg"><i class="fal fa-user"></i> <span>Se
-                    connecter</span></a>
-        </div>
-    @endif
+    @livewire('admin-owner-client-header-profile-info')
     <!--  login btn  end -->
     <!--  navigation -->
     <div class="nav-holder main-menu">

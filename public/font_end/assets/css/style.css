@@ -375,7 +375,7 @@ blockquote p {
 
 .dashboard-submenu {
 	position: absolute;
-	right: 245px;
+	right: 10px;
 	top: 100%;
 	padding: 0 0 50px;
 	max-width: 210px;

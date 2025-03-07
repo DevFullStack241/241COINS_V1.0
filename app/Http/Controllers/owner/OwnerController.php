@@ -169,7 +169,7 @@ class OwnerController extends Controller
     public function logoutHandler(Request $request)
     {
         Auth::guard('owner')->logout();
-        return redirect()->route('owner.login')->with('fail', 'Vous êtes déconnecté !');
+        return redirect()->route('home')->with('fail', 'Vous êtes déconnecté !');
     } //End Method
 
     public function forgotPassword(Request $request)

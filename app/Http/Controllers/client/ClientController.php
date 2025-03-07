@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
+use App\Models\Etablishment;
 use App\Models\VerificationToken;
 use Illuminate\Support\Facades\DB;
 use constGuards;
@@ -38,11 +39,16 @@ class ClientController extends Controller
 
     public function home(Request $request)
     {
+        $etablishments = Etablishment::all(); // Assurez-vous que le modèle 'Etablishment' existe
+
         $data = [
-            'pageTitle' => 'Client Home'
+            'pageTitle' => 'Client Home',
+            'etablishments' => $etablishments
         ];
-        return view('home', $data);
-    } //End Method
+
+        return view('font_end.pages.home', $data);
+    }
+
 
     public function createClient(Request $request)
     {
@@ -169,7 +175,7 @@ class ClientController extends Controller
     public function logoutHandler(Request $request)
     {
         Auth::guard('client')->logout();
-        return redirect()->route('client.login')->with('fail', 'Vous êtes déconnecté !');
+        return redirect()->route('home')->with('fail', 'Vous êtes déconnecté !');
     } //End Method
 
     public function forgotPassword(Request $request)
