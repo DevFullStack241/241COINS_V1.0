@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class Etablishment extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'address',
+        'owner_id',
+        'category_id',
+        'opening_hours',
+        'status',
+        'phone_whatsapp',
+        'phone_service',
+        'website',
+        'email',
+        'services',
+        'cover_image',
+        'latitude',
+        'longitude'
+    ];
+
+
+
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Etablishment_image::class);
+    }
+}
