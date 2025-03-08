@@ -1,7 +1,11 @@
 @extends('back.layouts.dashboard')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page title here')
 @section('content')
-
+    <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dasboard Menu</div>
+    <div class="container dasboard-container">
+        <!-- dashboard-title -->
+        @livewire('client.client-profile')
+    </div>
 @endsection
 @push('scripts')
     <script>

@@ -2,6 +2,17 @@
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page title here')
 @section('content')
     <div class="content">
+        <div class="dashboard-title fl-wrap">
+            <div class="dashboard-title-item"><span>Vue</span></div>
+            @livewire('admin-owner-client-header-profile-info')
+        </div>
+        <div class="breadcrumbs fw-breadcrumbs smpar fl-wrap">
+            <div class="container">
+                <a href="{{ route('owner.etablishment.index') }}" class="gradient-bg dashboard-addnew_btn"> Retour <i
+                        class="fal fa-arrow-left"></i></a>
+            </div>
+        </div>
+
         <section class="hidden-section   single-hero-section" data-scrollax-parent="true" id="sec1">
             <div class="bg-wrap bg-parallax-wrap-gradien">
                 <div class="bg par-elem" data-bg="{{ asset('storage/' . $etablishment->cover_image) }}"
@@ -42,19 +53,14 @@
                 </div>
             </div>
         </section>
-        <div class="breadcrumbs fw-breadcrumbs smpar fl-wrap">
-            <div class="container">
-                <div class="like-btn"><i class="fas fa-heart"></i> Je n'aime pas</div>
-                <div class="like-btn"><i class="fas fa-heart"></i> J'aime</div>
-            </div>
-        </div>
+
         <div class="gray-bg small-padding fl-wrap">
             <div class="container">
                 <div class="row2">
                     <!--  listing-single content -->
                     <div class="col-md-12">
                         <div class="list-single-main-wrapper fl-wrap">
-                            
+
                             <div class="list-single-main-media fl-wrap" id="sec2">
                                 <!-- gallery-items   -->
                                 <div class="gallery-items grid-small-pad  list-single-gallery three-coulms lightgallery"
@@ -139,35 +145,34 @@
                                     </div>
                                     <div class="list-single-main-item_content fl-wrap">
                                         <p class="justify-text">{{ $etablishment->description }}</p>
-                                        <a href="#" class="btn float-btn color-bg">Visit Website</a>
                                     </div>
                                 </div>
                                 <!-- list-single-main-item end -->
                                 <!-- list-single-main-item -->
                                 <div class="list-single-main-item fl-wrap">
                                     <div class="list-single-main-item-title">
-                                        <h3>Details</h3>
+                                        <h3>Détails</h3>
                                     </div>
                                     <div class="list-single-main-item_content fl-wrap">
                                         <div class="details-list">
                                             <ul>
-                                                <li><span>Property Id:</span>154</li>
-                                                <li><span>Property Lot Size:</span>850 m2</li>
-                                                <li><span>Bathrooms:</span>4</li>
-                                                <li><span>Rooms:</span>8</li>
-                                                <li><span>Bedrooms:</span>2</li>
-                                                <li><span>Garage Size:</span>2 cars</li>
-                                                <li><span>Available from:</span>25.05.2020</li>
-                                                <li><span>Price:</span>$ 50.500.00</li>
-                                                <li><span>Type:</span>Apartment/House</li>
+                                                <li><span>Nom:</span>{{ $etablishment->name }}</li>
+                                                <li><span>Catégorie:</span>{{ $etablishment->category->name ?? 'Non spécifié' }}
+                                                </li>
+                                                <li><span>Adresse:</span>{{ $etablishment->address }}</li>
+                                                <li><span>Statut:</span>{{ $etablishment->status }}</li>
+                                                <li><span>E-mail:</span>{{ $etablishment->email }}</li>
+                                                <li><span>Téléphone Whatsapp:</span>{{ $etablishment->phone_whatsapp }}
+                                                </li>
+                                                <li><span>Téléphone Service:</span>{{ $etablishment->phone_service }}</li>
+                                                <li><span>Site Web:</span>{{ $etablishment->website }}</li>
+                                                <li><span>Jours et Heures:</span>{{ $etablishment->opening_hours }}</li>
+                                                <li><span>Services:</span>{{ $etablishment->services }}</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- list-single-main-item end -->
-                                
-                                
-                                
                                 <!-- list-single-main-item -->
                                 <div class="list-single-main-item fw-lmi fl-wrap" id="sec6">
                                     <div class="map-container mapC_vis mapC_vis2">
@@ -208,22 +213,6 @@
                                     </div>
                                     <div class="list-single-main-item_content fl-wrap">
                                         <div class="reviews-comments-wrap fl-wrap">
-                                            <div class="review-total">
-                                                <span class="review-number blue-bg">4.0</span>
-                                                <div class="listing-rating card-popup-rainingvis" data-starrating2="4"><i
-                                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                        class="fas fa-star"></i><i class="fas fa-star"></i><span
-                                                        class="re_stars-title">Good</span>
-                                                    <div class="card-popup-rainingvis_bg"><span
-                                                            class="card-popup-rainingvis_bg_item"></span><span
-                                                            class="card-popup-rainingvis_bg_item"></span><span
-                                                            class="card-popup-rainingvis_bg_item"></span><span
-                                                            class="card-popup-rainingvis_bg_item"></span><span
-                                                            class="card-popup-rainingvis_bg_item"></span>
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <!-- reviews-comments-item -->
                                             <div class="reviews-comments-item">
                                                 <div class="review-comments-avatar">
@@ -238,72 +227,12 @@
                                                             Report </a>
                                                     </div>
                                                     <h4><a href="#">Liza Rose</a></h4>
-                                                    <div class="listing-rating card-popup-rainingvis"
-                                                        data-starrating2="3"><i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i><span
-                                                            class="re_stars-title">Average</span>
-                                                        <div class="card-popup-rainingvis_bg"><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span>
-                                                            <div></div>
-                                                        </div>
-                                                    </div>
                                                     <div class="clearfix"></div>
-                                                    <p>" Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-                                                        sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-                                                        vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-                                                        imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-                                                        mollis pretium. "</p>
+                                                    <p>......</p>
                                                     <div class="reviews-comments-item-date"><span
                                                             class="reviews-comments-item-date-item"><i
-                                                                class="far fa-calendar-check"></i>12 April 2018</span><a
-                                                            href="#" class="rate-review"><i
-                                                                class="fal fa-thumbs-up"></i> Helpful Review <span>6</span>
-                                                        </a></div>
-                                                </div>
-                                            </div>
-                                            <!--reviews-comments-item end-->
-                                            <!-- reviews-comments-item -->
-                                            <div class="reviews-comments-item">
-                                                <div class="review-comments-avatar">
-                                                    <img src="images/avatar/3.jpg" alt="">
-                                                </div>
-                                                <div class="reviews-comments-item-text smpar">
-                                                    <div class="box-widget-menu-btn smact"><i
-                                                            class="far fa-ellipsis-h"></i></div>
-                                                    <div class="show-more-snopt-tooltip bxwt">
-                                                        <a href="#"> <i class="fas fa-reply"></i> Reply</a>
-                                                        <a href="#"> <i class="fas fa-exclamation-triangle"></i>
-                                                            Report </a>
+                                                                class="far fa-calendar-check"></i>12 April 2018</span>
                                                     </div>
-                                                    <h4><a href="#">Adam Koncy</a></h4>
-                                                    <div class="listing-rating card-popup-rainingvis"
-                                                        data-starrating2="5"><i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                            class="fas fa-star"></i><i class="fas fa-star"></i><span
-                                                            class="re_stars-title">Excellent</span>
-                                                        <div class="card-popup-rainingvis_bg"><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span><span
-                                                                class="card-popup-rainingvis_bg_item"></span>
-                                                            <div></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <p>" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                                                        posuere convallis purus non cursus. Cras metus neque, gravida
-                                                        sodales massa ut. "</p>
-                                                    <div class="reviews-comments-item-date"><span
-                                                            class="reviews-comments-item-date-item"><i
-                                                                class="far fa-calendar-check"></i>03 December 2017</span><a
-                                                            href="#" class="rate-review"><i
-                                                                class="fal fa-thumbs-up"></i> Helpful Review <span>2</span>
-                                                        </a></div>
                                                 </div>
                                             </div>
                                             <!--reviews-comments-item end-->
@@ -312,52 +241,15 @@
                                 </div>
                                 <!-- list-single-main-item end -->
                                 <!-- list-single-main-item -->
-                                <div class="list-single-main-item fl-wrap" id="sec15">
+                                {{-- <div class="list-single-main-item fl-wrap" id="sec15">
                                     <div class="list-single-main-item-title fl-wrap">
                                         <h3>Add Your Review</h3>
                                     </div>
                                     <!-- Add Review Box -->
                                     <div id="add-review" class="add-review-box">
-                                        <div class="leave-rating-wrap">
-                                            <span class="leave-rating-title">Your rating for this listing : </span>
-                                            <div class="leave-rating">
-                                                <input type="radio" data-ratingtext="Excellent" name="rating"
-                                                    id="rating-1" value="1">
-                                                <label for="rating-1" class="fal fa-star"></label>
-                                                <input type="radio" data-ratingtext="Good" name="rating"
-                                                    id="rating-2" value="2">
-                                                <label for="rating-2" class="fal fa-star"></label>
-                                                <input type="radio" name="rating" data-ratingtext="Average"
-                                                    id="rating-3" value="3">
-                                                <label for="rating-3" class="fal fa-star"></label>
-                                                <input type="radio" data-ratingtext="Fair" name="rating"
-                                                    id="rating-4" value="4">
-                                                <label for="rating-4" class="fal fa-star"></label>
-                                                <input type="radio" data-ratingtext="Very Bad " name="rating"
-                                                    id="rating-5" value="5">
-                                                <label for="rating-5" class="fal fa-star"></label>
-                                            </div>
-                                            <div class="count-radio-wrapper">
-                                                <span id="count-checked-radio">Your Rating</span>
-                                            </div>
-                                        </div>
                                         <!-- Review Comment -->
                                         <form class="add-comment custom-form">
                                             <fieldset>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label>Your name* <span class="dec-icon"><i
-                                                                    class="fas fa-user"></i></span></label>
-                                                        <input name="phone" type="text" onclick="this.select()"
-                                                            value="">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Yourmail* <span class="dec-icon"><i
-                                                                    class="fas fa-envelope"></i></span></label>
-                                                        <input name="reviewwname" type="text" onclick="this.select()"
-                                                            value="">
-                                                    </div>
-                                                </div>
                                                 <textarea cols="40" rows="3" placeholder="Your Review:"></textarea>
                                             </fieldset>
                                             <button class="btn big-btn color-bg float-btn">Submit Review <i
@@ -365,17 +257,17 @@
                                         </form>
                                     </div>
                                     <!-- Add Review Box / End -->
-                                </div>
+                                </div> --}}
                                 <!-- list-single-main-item end -->
                             </div>
                         </div>
                     </div>
                     <!-- listing-single content end-->
-            
-                    
+
+
                 </div>
-                
-                
+
+
             </div>
         </div>
     </div>

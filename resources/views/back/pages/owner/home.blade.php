@@ -55,313 +55,83 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    <!-- dashboard-listings-wrap-->
                     <div class="dashboard-listings-wrap fl-wrap">
                         <div class="row">
-                            <!-- dashboard-listings-item-->
-                            <div class="col-md-6">
-                                <div class="dashboard-listings-item fl-wrap">
-                                    <div class="dashboard-listings-item_img">
-                                        <div class="bg-wrap">
-                                            <div class="bg  " data-bg="images/all/3.jpg"
-                                                style="background-image: url(&quot;images/all/3.jpg&quot;);">
+                            @foreach ($etablishments as $etablishment)
+                                <!-- dashboard-listings-item-->
+                                <div class="col-md-6">
+                                    <div class="dashboard-listings-item fl-wrap">
+                                        <div class="dashboard-listings-item_img">
+                                            <div class="bg-wrap">
+                                                <div class="bg  "
+                                                    data-bg="{{ asset('storage/' . $etablishment->cover_image) }}"
+                                                    style="background-image: url('{{ asset('storage/' . $etablishment->image) }}')">
+                                                </div>
                                             </div>
+                                            <div class="overlay"></div>
+                                            <a href="{{ route('owner.etablishment.show', $etablishment->id) }}"
+                                                class="color-bg">Voir</a>
                                         </div>
-                                        <div class="overlay"></div>
-                                        <a href="listing-single.html" class="color-bg">View</a>
-                                    </div>
-                                    <div class="dashboard-listings-item_content">
-                                        <h4><a href="listing-single.html">Gorgeous House For Sale</a></h4>
-                                        <div class="geodir-category-location">
-                                            <a href="#"><i class="fas fa-map-marker-alt"></i> <span>
-                                                    70 Bright St New York,
-                                                    USA</span></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="listing-rating card-popup-rainingvis tolt"
-                                            data-microtip-position="right" data-tooltip="Good" data-starrating2="4"><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                            <div class="card-popup-rainingvis_bg"><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span>
-                                                <div></div>
+                                        <div class="dashboard-listings-item_content">
+                                            <h4><a href="#">{{ $etablishment->name }}</a></h4>
+                                            <div class="geodir-category-location">
+                                                <a href="#"><i class="fas fa-map-marker-alt"></i>
+                                                    <span>{{ $etablishment->address }}</span></a>
                                             </div>
-                                        </div>
-                                        <div class="dashboard-listings-item_opt">
-                                            <span class="viewed-counter"><i class="fas fa-eye"></i> Viewed
-                                                - 645 </span>
-                                            <ul>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Edit"><i class="far fa-edit"></i></a></li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Disable"><i class="far fa-signal-alt-slash"></i></a>
-                                                </li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-listings-item end-->
-                            <!-- dashboard-listings-item-->
-                            <div class="col-md-6">
-                                <div class="dashboard-listings-item fl-wrap">
-                                    <div class="dashboard-listings-item_img">
-                                        <div class="bg-wrap">
-                                            <div class="bg  " data-bg="images/all/1.jpg"
-                                                style="background-image: url(&quot;images/all/1.jpg&quot;);">
+                                            <div class="clearfix"></div>
+                                            <div class="listing-rating card-popup-rainingvis tolt"
+                                                data-microtip-position="right" data-tooltip="Good"
+                                                data-starrating2="{{ $etablishment->note }}">
+                                                @for ($i = 1; $i <= 3; $i++)
+                                                    <i
+                                                        class="fas fa-star {{ $i <= $etablishment->note ? 'active' : '' }}"></i>
+                                                @endfor
                                             </div>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <a href="listing-single.html" class="color-bg">View</a>
-                                    </div>
-                                    <div class="dashboard-listings-item_content">
-                                        <h4><a href="listing-single.html">Luxury Family Home</a></h4>
-                                        <div class="geodir-category-location">
-                                            <a href="#"><i class="fas fa-map-marker-alt"></i> <span>
-                                                    40 Journal Square , NJ,
-                                                    USA</span></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="listing-rating card-popup-rainingvis tolt"
-                                            data-microtip-position="right" data-tooltip="Excellent" data-starrating2="5"><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i>
-                                            <div class="card-popup-rainingvis_bg"><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span>
-                                                <div></div>
+                                            <div class="dashboard-listings-item_opt">
+                                                <ul>
+                                                    <li><a href="{{ route('owner.etablishment.edit', $etablishment->id) }}"
+                                                            class="tolt" data-microtip-position="top-left"
+                                                            data-tooltip="Modifier"><i class="far fa-edit"></i></a></li>
+                                                    <li>
+                                                        <form id="delete-form-{{ $etablishment->id }}"
+                                                            action="{{ route('owner.etablishment.delete', $etablishment->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href="#" class="tolt delete-link"
+                                                                data-microtip-position="top-left" data-tooltip="Supprimer"
+                                                                data-id="{{ $etablishment->id }}">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
+                                                        </form>
+
+                                                        <script>
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                document.querySelectorAll('.delete-link').forEach(link => {
+                                                                    link.addEventListener('click', function(event) {
+                                                                        event.preventDefault(); // Empêche la navigation
+                                                                        let etablishmentId = this.getAttribute('data-id');
+                                                                        let form = document.getElementById('delete-form-' + etablishmentId);
+
+                                                                        if (confirm("Voulez-vous vraiment supprimer cet établissement ?")) {
+                                                                            form.submit();
+                                                                        }
+                                                                    });
+                                                                });
+                                                            });
+                                                        </script>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </div>
-                                        <div class="dashboard-listings-item_opt">
-                                            <span class="viewed-counter"><i class="fas fa-eye"></i> Viewed
-                                                - 247 </span>
-                                            <ul>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Edit"><i class="far fa-edit"></i></a></li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Disable"><i class="far fa-signal-alt-slash"></i></a>
-                                                </li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- dashboard-listings-item end-->
-                            <!-- dashboard-listings-item-->
-                            <div class="col-md-6">
-                                <div class="dashboard-listings-item fl-wrap">
-                                    <div class="dashboard-listings-item_img">
-                                        <div class="bg-wrap">
-                                            <div class="bg  " data-bg="images/all/9.jpg"
-                                                style="background-image: url(&quot;images/all/9.jpg&quot;);">
-                                            </div>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <a href="listing-single.html" class="color-bg">View</a>
-                                    </div>
-                                    <div class="dashboard-listings-item_content">
-                                        <h4><a href="listing-single.html">Family House for Rent</a></h4>
-                                        <div class="geodir-category-location">
-                                            <a href="#"><i class="fas fa-map-marker-alt"></i> <span>
-                                                    34-42 Montgomery St ,
-                                                    NY, USA</span></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="listing-rating card-popup-rainingvis tolt"
-                                            data-microtip-position="right" data-tooltip="Good" data-starrating2="4"><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                                            <div class="card-popup-rainingvis_bg"><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span>
-                                                <div></div>
-                                            </div>
-                                        </div>
-                                        <div class="dashboard-listings-item_opt">
-                                            <span class="viewed-counter"><i class="fas fa-eye"></i> Viewed
-                                                - 24 </span>
-                                            <ul>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Edit"><i class="far fa-edit"></i></a></li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Disable"><i class="far fa-signal-alt-slash"></i></a>
-                                                </li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-listings-item end-->
-                            <!-- dashboard-listings-item-->
-                            <div class="col-md-6">
-                                <div class="dashboard-listings-item fl-wrap">
-                                    <div class="dashboard-listings-item_img">
-                                        <div class="bg-wrap">
-                                            <div class="bg  " data-bg="images/all/6.jpg"
-                                                style="background-image: url(&quot;images/all/6.jpg&quot;);">
-                                            </div>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <a href="listing-single.html" class="color-bg">View</a>
-                                    </div>
-                                    <div class="dashboard-listings-item_content">
-                                        <h4><a href="listing-single.html">Contemporary Apartment</a></h4>
-                                        <div class="geodir-category-location">
-                                            <a href="#"><i class="fas fa-map-marker-alt"></i> <span>
-                                                    W 85th St, New York,
-                                                    USA</span></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="listing-rating card-popup-rainingvis tolt"
-                                            data-microtip-position="right" data-tooltip="Excellent" data-starrating2="5">
-                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i>
-                                            <div class="card-popup-rainingvis_bg"><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span>
-                                                <div></div>
-                                            </div>
-                                        </div>
-                                        <div class="dashboard-listings-item_opt">
-                                            <span class="viewed-counter"><i class="fas fa-eye"></i> Viewed
-                                                - 921 </span>
-                                            <ul>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Edit"><i class="far fa-edit"></i></a></li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Disable"><i class="far fa-signal-alt-slash"></i></a>
-                                                </li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-listings-item end-->
-                            <!-- dashboard-listings-item-->
-                            <div class="col-md-6">
-                                <div class="dashboard-listings-item fl-wrap">
-                                    <div class="dashboard-listings-item_img">
-                                        <div class="bg-wrap">
-                                            <div class="bg  " data-bg="images/all/5.jpg"
-                                                style="background-image: url(&quot;images/all/5.jpg&quot;);">
-                                            </div>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <a href="listing-single.html" class="color-bg">View</a>
-                                    </div>
-                                    <div class="dashboard-listings-item_content">
-                                        <h4><a href="listing-single.html">Kayak Point House</a></h4>
-                                        <div class="geodir-category-location">
-                                            <a href="#"><i class="fas fa-map-marker-alt"></i> <span>
-                                                    75 Prince St, NY,
-                                                    USA</span></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="listing-rating card-popup-rainingvis tolt"
-                                            data-microtip-position="right" data-tooltip="Average" data-starrating2="3"><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i>
-                                            <div class="card-popup-rainingvis_bg"><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span>
-                                                <div></div>
-                                            </div>
-                                        </div>
-                                        <div class="dashboard-listings-item_opt">
-                                            <span class="viewed-counter"><i class="fas fa-eye"></i> Viewed
-                                                - 434 </span>
-                                            <ul>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Edit"><i class="far fa-edit"></i></a></li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Disable"><i class="far fa-signal-alt-slash"></i></a>
-                                                </li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-listings-item end-->
-                            <!-- dashboard-listings-item-->
-                            <div class="col-md-6">
-                                <div class="dashboard-listings-item fl-wrap">
-                                    <div class="dashboard-listings-item_img">
-                                        <div class="bg-wrap">
-                                            <div class="bg  " data-bg="images/all/8.jpg"
-                                                style="background-image: url(&quot;images/all/8.jpg&quot;);">
-                                            </div>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <a href="listing-single.html" class="color-bg">View</a>
-                                    </div>
-                                    <div class="dashboard-listings-item_content">
-                                        <h4><a href="listing-single.html">Urban House</a></h4>
-                                        <div class="geodir-category-location">
-                                            <a href="#"><i class="fas fa-map-marker-alt"></i> <span>
-                                                    70 Bright St, Jersey
-                                                    City, NJ USA</span></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="listing-rating card-popup-rainingvis tolt"
-                                            data-microtip-position="right" data-tooltip="Excellent" data-starrating2="5">
-                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i>
-                                            <div class="card-popup-rainingvis_bg"><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span><span
-                                                    class="card-popup-rainingvis_bg_item"></span>
-                                                <div></div>
-                                            </div>
-                                        </div>
-                                        <div class="dashboard-listings-item_opt">
-                                            <span class="viewed-counter"><i class="fas fa-eye"></i> Viewed
-                                                - 244 </span>
-                                            <ul>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Edit"><i class="far fa-edit"></i></a></li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Disable"><i class="far fa-signal-alt-slash"></i></a>
-                                                </li>
-                                                <li><a href="#" class="tolt" data-microtip-position="top-left"
-                                                        data-tooltip="Delete"><i class="far fa-trash-alt"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- dashboard-listings-item end-->
+                                <!-- dashboard-listings-item end-->
+                            @endforeach
                         </div>
                     </div>
+                    <!-- dashboard-listings-wrap end-->
                 </div>
             </div>
         </div>

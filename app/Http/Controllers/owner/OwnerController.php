@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Etablishment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -38,11 +39,19 @@ class OwnerController extends Controller
 
     public function home(Request $request)
     {
+
+        // Récupère uniquement les établissements de cet utilisateur
+        $etablishments = Etablishment::where('owner_id', auth()->id())->get();
+
+
         $data = [
-            'pageTitle' => 'Owner Dashboard'
+            'pageTitle' => 'Owner Dashboard',
+            'etablishments' => $etablishments
         ];
+
         return view('back.pages.owner.home', $data);
-    } //End Method
+    }
+
 
     public function createOwner(Request $request)
     {

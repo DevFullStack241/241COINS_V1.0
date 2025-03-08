@@ -20,14 +20,14 @@
         <nav>
             <ul class="no-list-style">
                 <li>
-                    <a href="">Accueil</a>
+                    <a href="{{ route('home') }}">Accueil</a>
                 </li>
                 <li>
                     <a
                         href=">Établissements</a>
                 </li>
                 <li>
-                    <a href="#">Catégories<i
+                    <a href="#">Etablissements<i
                             class="fa fa-caret-down"></i></a>
                     <!--second level -->
                     <ul>
@@ -39,10 +39,10 @@
                     <!--second level end-->
                 </li>
                 <li>
-                    <a href="">À propos</a>
+                    <a href="{{ route('apropos') }}">À propos</a>
                 </li>
                 <li>
-                    <a href="">Contact</a>
+                    <a href="{{ route('contact') }}">Contact</a>
                 </li>
             </ul>
         </nav>

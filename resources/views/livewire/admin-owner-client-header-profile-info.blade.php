@@ -22,7 +22,7 @@
         <div class="dashbard-menu-header">
             <div class="dashbard-menu-avatar fl-wrap">
                 <img src="{{ $owner->picture }}" alt="">
-                <h4>Welcome, <span>{{ $owner->name }}</span></h4>
+                <h4>Salut, <span>{{ $owner->name }}</span></h4>
             </div>
             <a href="{{ route('owner.logout') }}"
                 onclick="event.preventDefault();document.getElementById('ownerLogoutForm').submit();"
@@ -36,10 +36,10 @@
             <i class="fal fa-user"></i>
         </div>
         <div class="show-reg-form dasbdord-submenu-open">
-            <img src="{{ asset('font_end/assets/images/avatar/5.jpg') }}" alt="">
+            <img src="{{ $client->picture }}" alt="">
         </div>
         <div class="dashboard-submenu">
-            <div class="dashboard-submenu-title fl-wrap">Bienvenue , <span>{{ $client->name }}</span></div>
+            <div class="dashboard-submenu-title fl-wrap">Salut , <span>{{ $client->name }}</span></div>
             <ul>
                 <li><a href="{{ route('home') }} "><i class="fal fa-chart-line"></i>Dashboard</a></li>
                 <li><a href="{{ route('client.profile') }} "><i class="fal fa-user-edit"></i>Profil</a></li>

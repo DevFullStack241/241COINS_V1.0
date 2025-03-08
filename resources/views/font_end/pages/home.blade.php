@@ -235,7 +235,7 @@
                     </lineargradient>
                     <path id="wave" stroke="url(#bg)" fill="none"
                         d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
-                                                                                                                                                                        s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
+                                                                                                                                                                                                            s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
                 </defs>
                 <g>
                     <use xlink:href="#wave">
@@ -265,6 +265,7 @@
     <!-- section end-->
     <!-- section -->
     <section class="gray-bg ">
+
         <div class="container">
             <div class="section-title st-center fl-wrap">
                 <h4>Testimonilas</h4>
@@ -273,80 +274,27 @@
         </div>
         <div class="clearfix"></div>
         <div class="testimonials-slider-wrap">
+
             <div class="testimonials-slider">
-                <!--slick-item -->
-                <div class="slick-item">
-                    <div class="text-carousel-item fl-wrap">
-                        <div class="text-carousel-item-header fl-wrap">
-                            <div class="popup-avatar"><img src="{{ asset('font_end/assets/images/avatar/1.jpg') }}"
-                                    alt=""></div>
-                            <div class="review-owner fl-wrap">Jessie Wilcox</div>
-                            <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
-                        </div>
-                        <div class="text-carousel-content fl-wrap">
-                            <p> "In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu
-                                mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, conse ctetuer
-                                adipiscing elit, sed diam nonu mmy nibh euismod tincidunt ut laoreet dolore luptatum."</p>
-                            <a href="#" class="testim-link color-bg">Via Facebook</a>
+                @foreach ($clients as $client)
+                    <!--slick-item -->
+                    <div class="slick-item">
+                        <div class="text-carousel-item fl-wrap">
+                            <div class="text-carousel-item-header fl-wrap">
+                                <div class="popup-avatar"><img src="{{ $client->picture }}" alt=""></div>
+                                <div class="review-owner fl-wrap">{{ $client->name }}</div>
+                                <div class="text-carousel-content fl-wrap">
+                                    <p>{{ $client->profession }}</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <!--slick-item end -->
-                <!--slick-item -->
-                <div class="slick-item">
-                    <div class="text-carousel-item fl-wrap">
-                        <div class="text-carousel-item-header fl-wrap">
-                            <div class="popup-avatar"><img src="{{ asset('font_end/assets/images/avatar/2.jpg') }}"
-                                    alt=""></div>
-                            <div class="review-owner fl-wrap">Austin Harisson</div>
-                            <div class="listing-rating card-popup-rainingvis" data-starrating2="4"> </div>
-                        </div>
-                        <div class="text-carousel-content fl-wrap">
-                            <p> "Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                                praesent luptatum zzril delenit augue duis dolore te odio dignissim qui blandit praesent
-                                blandit praesent luptatum zzril.Vulputate urna. Nulla tristique mi a massa convallis."</p>
-                            <a href="#" class="testim-link color-bg">Via Twitter</a>
-                        </div>
-                    </div>
-                </div>
-                <!--slick-item end -->
-                <!--slick-item -->
-                <div class="slick-item">
-                    <div class="text-carousel-item fl-wrap">
-                        <div class="text-carousel-item-header fl-wrap">
-                            <div class="popup-avatar"><img src="{{ asset('font_end/assets/images/avatar/3.jpg') }}"
-                                    alt=""></div>
-                            <div class="review-owner fl-wrap">Garry Colonsi</div>
-                            <div class="listing-rating card-popup-rainingvis" data-starrating2="4"> </div>
-                        </div>
-                        <div class="text-carousel-content fl-wrap">
-                            <p> "In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu
-                                mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, conse ctetuer
-                                adipiscing elit, sed diam nonu mmy nibh euismod tincidunt ut laoreet dolore luptatum."</p>
-                            <a href="#" class="testim-link color-bg">Via Facebook</a>
-                        </div>
-                    </div>
-                </div>
-                <!--slick-item end -->
-                <!--slick-item -->
-                <div class="slick-item">
-                    <div class="text-carousel-item fl-wrap">
-                        <div class="text-carousel-item-header fl-wrap">
-                            <div class="popup-avatar"><img src="{{ asset('font_end/assets/images/avatar/4.jpg') }}"
-                                    alt=""></div>
-                            <div class="review-owner fl-wrap">Antony Moore</div>
-                            <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
-                        </div>
-                        <div class="text-carousel-content fl-wrap">
-                            <p> "Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                                praesent luptatum zzril delenit augue duis dolore te odio dignissim qui blandit praesent
-                                blandit praesent luptatum zzril.Vulputate urna. Nulla tristique mi a massa convallis."</p>
-                            <a href="#" class="testim-link color-bg">Via Twitter</a>
-                        </div>
-                    </div>
-                </div>
-                <!--slick-item end -->
+                    <!--slick-item end -->
+                @endforeach
             </div>
+
         </div>
+
     </section>
 @endsection

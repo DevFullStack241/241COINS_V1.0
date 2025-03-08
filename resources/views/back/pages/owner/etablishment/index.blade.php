@@ -1,6 +1,10 @@
 @extends('back.layouts.dash_owner')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page title here')
 @section('content')
+    <div class="dashboard-title fl-wrap">
+        <div class="dashboard-title-item"><span>Mes établissements</span></div>
+        @livewire('admin-owner-client-header-profile-info')
+    </div>
     <div class="dasboard-wrapper fl-wrap">
         <div class="dasboard-listing-box fl-wrap">
             <div class="dasboard-opt sl-opt fl-wrap">

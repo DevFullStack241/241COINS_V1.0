@@ -1,15 +1,20 @@
 @extends('back.layouts.dash_owner')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page title here')
 @section('content')
+    <div class="dashboard-title fl-wrap">
+        <div class="dashboard-title-item"><span>Modification d'un établissements</span></div>
+        @livewire('admin-owner-client-header-profile-info')
+    </div>
 
     <div class="container dasboard-container">
         <!-- dashboard-title -->
-        <div class="dashboard-title fl-wrap">
-            <div class="dashboard-title-item"><span>Modification d'un établissement</span></div>
-            @livewire('admin-owner-client-header-profile-info')
-        </div>
+
         <!-- dashboard-title end -->
         <div class="dasboard-wrapper fl-wrap no-pag">
+            <div class="dasboard-opt sl-opt fl-wrap">
+                <a href="{{ route('owner.etablishment.index') }}" class="gradient-bg dashboard-addnew_btn"> Retour <i
+                        class="fal fa-arrow-left"></i></a>
+            </div>
 
             <div style="display: none; width: 866.625px; height: 57px; float: left;"></div>
             <!-- dasboard-widget-title -->

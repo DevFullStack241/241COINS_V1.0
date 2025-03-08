@@ -26,7 +26,6 @@
                         <ul class="footer-list fl-wrap">
                             <li><a href="about.html">Accueil</a></li>
                             <li><a href="blog.html">Etablissement</a></li>
-                            <li><a href="pricing.html">Catégories</a></li>
                             <li><a href="help.html">A propos</a></li>
                             <li><a href="contacts.html">Contacts</a></li>
                         </ul>
@@ -40,21 +39,13 @@
                             <h4>Informations de contact</h4>
                         </div>
                         <ul class="footer-contacts fl-wrap">
-                            <li><span><i class="fal fa-envelope"></i> Mail :</span><a href="#"
-                                    target="_blank">yourmail@domain.com</a></li>
-                            <li> <span><i class="fal fa-map-marker"></i> Adress :</span><a href="#"
-                                    target="_blank">USA 27TH Brooklyn NY</a></li>
-                            <li><span><i class="fal fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a>
+                            <li><span><i class="fal fa-envelope"></i> E-mail :</span><a href="#"
+                                    target="_blank">...............</a></li>
+                            <li> <span><i class="fal fa-map-marker"></i> Adresse :</span><a href="#"
+                                    target="_blank">Glass</a></li>
+                            <li><span><i class="fal fa-phone"></i> Téléphone :</span><a href="#">+241</a>
                             </li>
                         </ul>
-                        <div class="footer-social fl-wrap">
-                            <ul>
-                                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <!-- footer widget end-->

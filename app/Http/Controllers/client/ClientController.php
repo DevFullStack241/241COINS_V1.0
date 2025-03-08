@@ -40,10 +40,12 @@ class ClientController extends Controller
     public function home(Request $request)
     {
         $etablishments = Etablishment::all(); // Assurez-vous que le modèle 'Etablishment' existe
+        $clients = Client::all();
 
         $data = [
             'pageTitle' => 'Client Home',
-            'etablishments' => $etablishments
+            'etablishments' => $etablishments,
+            'clients' => $clients
         ];
 
         return view('font_end.pages.home', $data);
