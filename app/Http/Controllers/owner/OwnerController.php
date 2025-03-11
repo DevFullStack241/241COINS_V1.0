@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Etablishment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -349,5 +350,32 @@ class OwnerController extends Controller
         } else {
             return response()->json(['status' => 0, 'msg' => 'Quelque chose s\'est mal passé.']);
         }
+    }
+
+    public function replyToComment(Request $request, $commentId)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500',
+        ]);
+
+        $parentComment = Comment::findOrFail($commentId);
+
+        // Vérifier que le commentaire concerne un établissement du propriétaire
+        $etablishment = Etablishment::where('id', $parentComment->etablishment_id)
+            ->where('owner_id', Auth::guard('owner')->id())
+            ->first();
+
+        if (!$etablishment) {
+            return redirect()->back()->with('error', 'Vous ne pouvez répondre qu\'aux commentaires de vos établissements.');
+        }
+
+        $reply = new Comment();
+        $reply->owner_id = Auth::guard('owner')->id();
+        $reply->etablishment_id = $parentComment->etablishment_id;
+        $reply->parent_id = $commentId;
+        $reply->content = $request->content;
+        $reply->save();
+
+        return redirect()->back()->with('success', 'Réponse envoyée avec succès.');
     }
 }

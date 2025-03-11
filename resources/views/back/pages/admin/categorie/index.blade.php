@@ -16,10 +16,9 @@
     <div class="card-box mb-30">
         <div class="pd-20">
             <h4 class="text-blue h4">Liste des Catégories</h4>
-            <p class="mb-0">
-                Ajouter une catégorier
-                <a class="text-primary" href="{{ route('admin.categorie.create') }}" target="_blank">Clique ici</a>
-            </p>
+            <a href="{{ route('admin.categorie.create') }}" class="btn btn-primary" role="button">
+                <i class="micon ion-add"> </i> Ajouter une catégorier
+            </a>
         </div>
         <div class="pb-20">
             <table class="data-table table stripe hover nowrap">

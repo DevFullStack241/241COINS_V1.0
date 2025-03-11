@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('address'); // Adresse complète
             $table->foreignId('owner_id')->constrained('owners')->onDelete('cascade'); // Clé étrangère vers les propriétaires
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); // Clé étrangère vers la catégorie
-            $table->string('opening_hours')->nullable(); // Stockage en texte simple
+            $table->text('opening_hours')->nullable(); // Stockage en texte simple
             $table->enum('status', ['ouvert', 'fermer'])->default('ouvert'); // Statut de l'établissement
             $table->string('phone_whatsapp')->nullable(); // Numéro WhatsApp
             $table->string('phone_service')->nullable(); // Numéro de service client
             $table->string('website')->nullable(); // Site web de l'établissement
             $table->string('email')->unique()->nullable(); // Email de contact
-            $table->string('services')->nullable(); // Services proposés sous forme de texte
+            $table->text('services')->nullable(); // Services proposés sous forme de texte
             $table->string('cover_image')->nullable(); // Image de couverture
             $table->decimal('latitude', 10, 8)->nullable(); // Latitude pour la géolocalisation
             $table->decimal('longitude', 11, 8)->nullable(); // Longitude pour la géolocalisation

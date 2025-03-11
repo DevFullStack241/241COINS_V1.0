@@ -29,6 +29,8 @@ Route::prefix('client')->name('client.')->group(function () {
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/profile', 'profileView')->name('profile');
             Route::post('/change-profile-picture', 'changeProfilePicture')->name('change-profile-picture');
+            Route::post('/etablishment/{id}/comment', [ClientController::class, 'addComment'])->name('client.comment');
+            Route::post('/comment/{id}/reply', [ClientController::class, 'replyToComment'])->name('client.reply');
         });
     });
 });

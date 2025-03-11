@@ -32,6 +32,7 @@ Route::prefix('owner')->name('owner.')->group(function () {
             Route::post('/logout', 'logoutHandler')->name('logout');
             Route::get('/profile', 'profileView')->name('profile');
             Route::post('/change-profile-picture', 'changeProfilePicture')->name('change-profile-picture');
+            Route::post('/comment/{id}/owner-reply', 'replyToComment')->name('owner.reply');
         });
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -348,5 +349,42 @@ class ClientController extends Controller
         } else {
             return response()->json(['status' => 0, 'msg' => 'Quelque chose s\'est mal passé.']);
         }
+    }
+
+    public function addComment(Request $request, $etablishmentId)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500',
+        ]);
+
+        $comment = new Comment();
+        $comment->client_id = Auth::guard('client')->id();
+        $comment->etablishment_id = $etablishmentId;
+        $comment->content = $request->content;
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Commentaire ajouté avec succès.');
+    }
+
+    public function replyToComment(Request $request, $commentId)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500',
+        ]);
+
+        $parentComment = Comment::findOrFail($commentId);
+
+        if ($parentComment->client_id != Auth::guard('client')->id()) {
+            return redirect()->back()->with('error', 'Vous ne pouvez répondre qu\'aux commentaires qui vous concernent.');
+        }
+
+        $reply = new Comment();
+        $reply->client_id = Auth::guard('client')->id();
+        $reply->etablishment_id = $parentComment->etablishment_id;
+        $reply->parent_id = $commentId;
+        $reply->content = $request->content;
+        $reply->save();
+
+        return redirect()->back()->with('success', 'Réponse ajoutée avec succès.');
     }
 }

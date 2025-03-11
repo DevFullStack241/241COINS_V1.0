@@ -38,19 +38,20 @@ class Etablishment extends Authenticatable
 
 
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->latest();
+    }
+
+
     public function owner()
     {
-        return $this->belongsTo(Owner::class);
+        return $this->belongsTo(Owner::class, 'owner_id');
     }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
     }
 
     public function images()

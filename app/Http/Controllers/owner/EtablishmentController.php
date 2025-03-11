@@ -71,10 +71,16 @@ class EtablishmentController extends Controller
      */
     public function show($id)
     {
-        $etablishment = Etablishment::where('id', $id)
-            ->where('owner_id', auth()->id())
-            ->with('category')
-            ->firstOrFail();
+        $etablishment = Etablishment::with('category')->findOrFail($id);
+
+
+        // Vérifie si l'utilisateur est connecté en tant que client ou propriétaire
+        if (auth('client')->check() || auth('owner')->check()) {
+            $etablishment->load(['comments' => function ($query) {
+                $query->with('client', 'owner')->orderBy('created_at', 'desc');
+            }]);
+        }
+
 
         return view('back.pages.owner.etablishment.show', compact('etablishment'));
     }

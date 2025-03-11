@@ -22,6 +22,8 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('back/owner/vendor/css/dashboard-style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('back/owner/vendor/css/dark-style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('back/owner/vendor/css/color.css') }}">
+
+
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="{{ asset('back/owner/vendor/images/favicon.ico') }}">
     <script>

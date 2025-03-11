@@ -144,7 +144,8 @@
                                         data-tooltip="Compare"><span><i class="fal fa-random"></i></span></a>
                                 </div>
                                 <div class="geodir-category-content fl-wrap">
-                                    <h3 class="title-sin_item"><a href="listing-single.html">{{ $etablishment->name }}</a>
+                                    <h3 class="title-sin_item"><a
+                                            href="{{ route('etablishment.detail', $etablishment->id) }}">{{ $etablishment->name }}</a>
                                     </h3>
                                     <div class="geodir-category-content_price">{{ $etablishment->status }}</div>
 
@@ -235,7 +236,7 @@
                     </lineargradient>
                     <path id="wave" stroke="url(#bg)" fill="none"
                         d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
-                                                                                                                                                                                                            s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
+                                                                                                                                                                                                                    s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
                 </defs>
                 <g>
                     <use xlink:href="#wave">

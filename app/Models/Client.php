@@ -65,8 +65,8 @@ class Client extends Authenticatable
         }
     }
 
-    public function reviews()
+    public function comments()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Comment::class, 'client_id');
     }
 }

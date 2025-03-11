@@ -22,13 +22,32 @@ class AdminOwnerClientHeaderProfileInfo extends Component
     public function mount()
     {
         if (Auth::guard('admin')->check()) {
-            $this->admin = Admin::findOrFail(auth()->id());
+            $adminId = Auth::guard('admin')->id(); // Récupère l'ID de l'admin authentifié
+            if ($adminId) {
+                $this->admin = Admin::find($adminId); // Charge les infos de l'admin
+            } else {
+                dd("L'utilisateur n'est pas authentifié sous le garde 'admin'");
+            }
         }
+
         if (Auth::guard('owner')->check()) {
-            $this->owner = Owner::findOrFail(auth()->id());
+            $ownerId = Auth::guard('owner')->id(); // Récupère l'ID du propriétaire authentifié
+            if ($ownerId) {
+                $this->owner = Owner::find($ownerId); // Charge les infos du propriétaire
+            } else {
+                dd("L'utilisateur n'est pas authentifié sous le garde 'owner'");
+            }
         }
+
+
         if (Auth::guard('client')->check()) {
-            $this->client = Client::findOrFail(auth()->id());
+            $clientId = Auth::guard('client')->id(); // Récupère l'ID depuis le garde client
+
+            if ($clientId) {
+                $this->client = Client::find($clientId);
+            } else {
+                dd("L'utilisateur n'est pas authentifié sous le garde 'client'");
+            }
         }
     }
     public function render()

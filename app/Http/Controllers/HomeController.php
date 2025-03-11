@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Etablishment;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
     {
         $etablishments = Etablishment::with('category')->get();
         $clients = Client::all(); // Récupère tous les clients
-        return view('font_end.pages.home', compact('etablishments','clients'));
+        return view('font_end.pages.home', compact('etablishments', 'clients'));
     }
     public function landing()
     {
@@ -28,5 +29,18 @@ class HomeController extends Controller
     public function contact()
     {
         return view('font_end.pages.contact');
+    }
+
+    public function detail($id)
+    {
+        $etablishment = Etablishment::with('category')->findOrFail($id);
+
+
+        // Charger les commentaires avec les auteurs (clients et propriétaires)
+        $etablishment->load(['comments' => function ($query) {
+            $query->with('client', 'owner')->orderBy('created_at', 'desc');
+        }]);
+
+        return view('font_end.pages.detail', compact('etablishment'));
     }
 }

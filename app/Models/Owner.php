@@ -67,4 +67,9 @@ class Owner extends Authenticatable
     {
         return $this->hasMany(Etablishment::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'owner_id');
+    }
 }
