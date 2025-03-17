@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Client;
 use App\Models\Etablishment;
 use App\Models\Owner;
@@ -12,9 +13,26 @@ class HomeController extends Controller
     //
     public function index()
     {
-        $etablishments = Etablishment::with('category')->get();
-        $clients = Client::all(); // Récupère tous les clients
-        return view('font_end.pages.home', compact('etablishments', 'clients'));
+        $etablishments = Etablishment::with('category')
+            ->latest() // Trie du plus récent au plus ancien
+            ->take(6) // Limite à 6 établissements
+            ->get();
+
+        // Récupérer tous les clients
+        $clients = Client::all();
+
+        $categories = Category::all();
+        $owners = Owner::all();
+
+        // Compter le nombre total de clients
+        $totalClients = $clients->count();
+
+        $totalEtablishments = $etablishments->count();
+
+        $totalCategories = $categories->count();
+        $totalOwners = $owners->count();
+
+        return view('font_end.pages.home', compact('etablishments', 'totalClients', 'clients', 'totalEtablishments', 'categories', 'totalCategories', 'owners', 'totalOwners'));
     }
     public function landing()
     {
@@ -42,5 +60,18 @@ class HomeController extends Controller
         }]);
 
         return view('font_end.pages.detail', compact('etablishment'));
+    }
+
+    public function etablissement()
+    {
+        $etablishments = Etablishment::with('category')
+            ->latest() // Trie du plus récent au plus ancien
+            ->paginate(9); // Pagination à 9 par page
+
+        $categories = Category::all(); // Récupération des catégories
+
+        $clients = Client::all();
+
+        return view('font_end.pages.etablissement', compact('etablishments', 'categories', 'clients'));
     }
 }

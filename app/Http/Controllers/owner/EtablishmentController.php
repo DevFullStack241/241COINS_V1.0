@@ -15,8 +15,16 @@ class EtablishmentController extends Controller
      */
     public function index()
     {
-        $etablishments = Etablishment::where('owner_id', auth()->id())->with('category')->get();
-        return view('back.pages.owner.etablishment.index', compact('etablishments'));
+        $etablishments = Etablishment::where('owner_id', auth()->id())
+            ->with('category')
+            ->latest()
+            ->paginate(6); // Pagination à 6 par page
+
+        // Récupération des pages pour la pagination personnalisée
+        $currentPage = $etablishments->currentPage();
+        $lastPage = $etablishments->lastPage();
+
+        return view('back.pages.owner.etablishment.index', compact('etablishments', 'currentPage', 'lastPage'));
     }
 
     /**

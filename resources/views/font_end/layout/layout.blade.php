@@ -14,6 +14,9 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('font_end/assets/css/color.css') }}">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="{{ asset('font_end/assets/images/logo241.png') }}">
+
+
+
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -121,6 +124,7 @@
     </div>
     <!-- Main end -->
     <!--=============== scripts  ===============-->
+
     <script src="{{ asset('font_end/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('font_end/assets/js/plugins.js') }}"></script>
     <script src="{{ asset('font_end/assets/js/scripts.js') }}"></script>
@@ -159,6 +163,36 @@
             }
         });
     </script>
+
+    <script>
+        function initMap() {
+            var mapElement = document.getElementById('singleMap');
+            var latitude = parseFloat(mapElement.getAttribute('data-latitude'));
+            var longitude = parseFloat(mapElement.getAttribute('data-longitude'));
+
+            var map = new google.maps.Map(mapElement, {
+                zoom: 12, // Ajuste le zoom selon tes besoins
+                center: {
+                    lat: latitude,
+                    lng: longitude
+                }
+            });
+
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: latitude,
+                    lng: longitude
+                },
+                map: map,
+                title: mapElement.getAttribute('data-maptitle')
+            });
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async defer>
+    </script>
+
+
     @kropifyScripts
     @livewireScripts
     @stack('scripts')

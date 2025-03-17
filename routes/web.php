@@ -18,4 +18,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/landing', [HomeController::class, 'landing'])->name('landing');
 Route::get('/apropos', [HomeController::class, 'apropos'])->name('apropos');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/etablissement', [HomeController::class, 'etablissement'])->name('etablissement');
 Route::get('/etablissements/{id}', [HomeController::class, 'detail'])->name('etablishment.detail');

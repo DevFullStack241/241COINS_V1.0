@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Client;
 use App\Models\Etablishment;
+use App\Models\Owner;
 use App\Models\VerificationToken;
 use Illuminate\Support\Facades\DB;
 use constGuards;
@@ -40,13 +42,34 @@ class ClientController extends Controller
 
     public function home(Request $request)
     {
-        $etablishments = Etablishment::all(); // Assurez-vous que le modèle 'Etablishment' existe
+        $etablishments = Etablishment::with('category')
+            ->latest() // Trie du plus récent au plus ancien
+            ->take(6) // Limite à 6 établissements
+            ->get();
+
+        // Récupérer tous les clients
         $clients = Client::all();
+
+        $categories = Category::all();
+        $owners = Owner::all();
+
+        // Compter le nombre total de clients
+        $totalClients = $clients->count();
+
+        $totalEtablishments = $etablishments->count();
+
+        $totalCategories = $categories->count();
+        $totalOwners = $owners->count();
 
         $data = [
             'pageTitle' => 'Client Home',
             'etablishments' => $etablishments,
-            'clients' => $clients
+            'clients' => $clients,
+            'totalClients' => $totalClients,
+            'totalEtablishments' => $totalEtablishments,
+            'totalCategories' => $totalCategories,
+            'totalOwners' => $totalOwners,
+
         ];
 
         return view('font_end.pages.home', $data);
@@ -357,11 +380,11 @@ class ClientController extends Controller
             'content' => 'required|string|max:500',
         ]);
 
-        $comment = new Comment();
-        $comment->client_id = Auth::guard('client')->id();
-        $comment->etablishment_id = $etablishmentId;
-        $comment->content = $request->content;
-        $comment->save();
+        Comment::create([
+            'client_id' => Auth::guard('client')->id(),
+            'etablishment_id' => $etablishmentId,
+            'content' => $request->content,
+        ]);
 
         return redirect()->back()->with('success', 'Commentaire ajouté avec succès.');
     }
@@ -374,16 +397,22 @@ class ClientController extends Controller
 
         $parentComment = Comment::findOrFail($commentId);
 
-        if ($parentComment->client_id != Auth::guard('client')->id()) {
-            return redirect()->back()->with('error', 'Vous ne pouvez répondre qu\'aux commentaires qui vous concernent.');
+        // Vérifier si l'utilisateur connecté est un client
+        if (!Auth::guard('client')->check()) {
+            return redirect()->back()->with('error', 'Seuls les clients peuvent répondre aux commentaires.');
         }
 
-        $reply = new Comment();
-        $reply->client_id = Auth::guard('client')->id();
-        $reply->etablishment_id = $parentComment->etablishment_id;
-        $reply->parent_id = $commentId;
-        $reply->content = $request->content;
-        $reply->save();
+        // Un client peut répondre uniquement à un commentaire lié au même établissement
+        if ($parentComment->etablishment_id != $request->etablishment_id) {
+            return redirect()->back()->with('error', 'Action non autorisée.');
+        }
+
+        Comment::create([
+            'client_id' => Auth::guard('client')->id(),
+            'etablishment_id' => $parentComment->etablishment_id,
+            'parent_id' => $commentId, // Permet d'afficher les réponses sous le bon commentaire
+            'content' => $request->content,
+        ]);
 
         return redirect()->back()->with('success', 'Réponse ajoutée avec succès.');
     }

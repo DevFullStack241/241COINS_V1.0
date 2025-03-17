@@ -23,20 +23,7 @@
                     <a href="{{ route('home') }}">Accueil</a>
                 </li>
                 <li>
-                    <a
-                        href=">Établissements</a>
-                </li>
-                <li>
-                    <a href="#">Etablissements<i
-                            class="fa fa-caret-down"></i></a>
-                    <!--second level -->
-                    <ul>
-                        <li><a href="">Agences</a></li>
-                        <li><a href="">Entreprises</a></li>
-                        <li><a href="">Fast-Foods</a></li>
-                        <li><a href="">Restaurants</a></li>
-                    </ul>
-                    <!--second level end-->
+                    <a href="{{ route('etablissement') }}">Etablissements</a>
                 </li>
                 <li>
                     <a href="{{ route('apropos') }}">À propos</a>

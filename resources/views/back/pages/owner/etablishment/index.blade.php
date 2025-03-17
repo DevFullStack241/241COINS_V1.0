@@ -88,13 +88,28 @@
         </div>
         <!-- pagination-->
         <div class="pagination float-pagination">
-            <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
-            <a href="#">1</a>
-            <a href="#" class="current-page">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
+            <!-- Lien vers la page précédente -->
+            @if ($etablishments->onFirstPage())
+                <a href="#" class="prevposts-link disabled"><i class="fa fa-caret-left"></i></a>
+            @else
+                <a href="{{ $etablishments->previousPageUrl() }}" class="prevposts-link"><i
+                        class="fa fa-caret-left"></i></a>
+            @endif
+
+            <!-- Liens vers les pages -->
+            @for ($i = 1; $i <= $lastPage; $i++)
+                <a href="{{ $etablishments->url($i) }}"
+                    class="{{ $currentPage == $i ? 'current-page' : '' }}">{{ $i }}</a>
+            @endfor
+
+            <!-- Lien vers la page suivante -->
+            @if ($etablishments->hasMorePages())
+                <a href="{{ $etablishments->nextPageUrl() }}" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
+            @else
+                <a href="#" class="nextposts-link disabled"><i class="fa fa-caret-right"></i></a>
+            @endif
         </div>
         <!-- pagination end-->
+
     </div>
 @endsection

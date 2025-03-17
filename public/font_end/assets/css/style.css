@@ -3467,6 +3467,10 @@ section.single-par2 .scroll-down-wrap {
 	width: 50%;
 	padding: 0 8px;
 	margin-bottom: 12px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	/* S'assure que toutes les cartes ont la même hauteur */
 }
 
 .listing-item.has_one_column {
@@ -3558,6 +3562,14 @@ section.single-par2 .scroll-down-wrap {
 	position: relative;
 	z-index: 1;
 	display: block;
+	width: 100%;
+	height: 200px;
+	/* Définit une hauteur fixe */
+	overflow: hidden;
+	/* Empêche les débordements */
+
+
+
 }
 
 .geodir-category-img_item .overlay {
@@ -3623,6 +3635,11 @@ section.single-par2 .scroll-down-wrap {
 	border: 1px solid #eee;
 	border-top: none;
 	border-radius: 0 0 6px 6px;
+	flex-grow: 1;
+	/* Remplit l'espace restant */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .geodir-category-content h3 {

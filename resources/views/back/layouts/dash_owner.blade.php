@@ -119,13 +119,11 @@
                                     établissements
                                 </a>
                             </li>
-                            <li><a href="dashboard-review.html"><i class="fal fa-comments-alt"></i> Reviews </a></li>
-                            <li><a href="dashboard-add-listing.html"><i class="fal fa-file-plus"></i> Add New</a></li>
                         </ul>
                     </div>
                     <!-- user-profile-menu end-->
                 </div>
-                <div class="dashbard-menu-footer"> &#169; Homeradar 2022 . All rights reserved.</div>
+                <div class="#"></div>
             </div>
             <!-- dashbard-menu-wrap end  -->
             <!-- content -->
@@ -134,16 +132,12 @@
                 <!-- dashboard-footer -->
                 <div class="dashboard-footer">
                     <div class="dashboard-footer-links fl-wrap">
-                        <span>Helpfull Links:</span>
+                        <span></span>
                         <ul>
-                            <li><a href="about.html">About </a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="pricing.html">Pricing Plans</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="help.html">Help Center</a></li>
+
                         </ul>
                     </div>
-                    <a href="#main" class="dashbord-totop  custom-scroll-link"><i class="fas fa-caret-up"></i></a>
+                    <a href="#" class="dashbord-totop  custom-scroll-link"><i class="fas fa-caret-up"></i></a>
                 </div>
                 <!-- dashboard-footer end -->
             </div>
@@ -197,6 +191,34 @@
             }
         });
     </script>
+
+    <script>
+        function initMap() {
+            var mapElement = document.getElementById('singleMap');
+            var latitude = parseFloat(mapElement.getAttribute('data-latitude'));
+            var longitude = parseFloat(mapElement.getAttribute('data-longitude'));
+
+            var map = new google.maps.Map(mapElement, {
+                zoom: 12, // Ajuste le zoom selon tes besoins
+                center: {
+                    lat: latitude,
+                    lng: longitude
+                }
+            });
+
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: latitude,
+                    lng: longitude
+                },
+                map: map,
+                title: mapElement.getAttribute('data-maptitle')
+            });
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async
+        defer></script>
     <!-- Google Tag Manager (noscript) -->
     @kropifyScripts
     @livewireScripts

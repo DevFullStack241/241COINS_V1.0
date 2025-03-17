@@ -42,7 +42,10 @@ class OwnerController extends Controller
     {
 
         // Récupère uniquement les établissements de cet utilisateur
-        $etablishments = Etablishment::where('owner_id', auth()->id())->get();
+        $etablishments = Etablishment::where('owner_id', auth()->id())
+            ->with('category')
+            ->latest()
+            ->paginate(8); // Pagination à 6 par page
 
 
         $data = [
@@ -358,23 +361,30 @@ class OwnerController extends Controller
             'content' => 'required|string|max:500',
         ]);
 
+        // Vérifier si l'utilisateur est bien un propriétaire authentifié
+        $ownerId = Auth::guard('owner')->id();
+        if (!$ownerId) {
+            return redirect()->back()->with('error', 'Vous devez être connecté en tant que propriétaire.');
+        }
+
         $parentComment = Comment::findOrFail($commentId);
 
-        // Vérifier que le commentaire concerne un établissement du propriétaire
-        $etablishment = Etablishment::where('id', $parentComment->etablishment_id)
-            ->where('owner_id', Auth::guard('owner')->id())
-            ->first();
+        // Vérifier que le commentaire appartient à un établissement du propriétaire
+        $etablishmentExists = Etablishment::where('id', $parentComment->etablishment_id)
+            ->where('owner_id', $ownerId)
+            ->exists();
 
-        if (!$etablishment) {
+        if (!$etablishmentExists) {
             return redirect()->back()->with('error', 'Vous ne pouvez répondre qu\'aux commentaires de vos établissements.');
         }
 
-        $reply = new Comment();
-        $reply->owner_id = Auth::guard('owner')->id();
-        $reply->etablishment_id = $parentComment->etablishment_id;
-        $reply->parent_id = $commentId;
-        $reply->content = $request->content;
-        $reply->save();
+        // Création de la réponse
+        Comment::create([
+            'owner_id' => $ownerId,
+            'etablishment_id' => $parentComment->etablishment_id,
+            'parent_id' => $commentId, // Associer cette réponse au bon commentaire
+            'content' => $request->content,
+        ]);
 
         return redirect()->back()->with('success', 'Réponse envoyée avec succès.');
     }

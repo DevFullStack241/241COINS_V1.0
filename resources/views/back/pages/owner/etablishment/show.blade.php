@@ -176,26 +176,14 @@
                                 <!-- list-single-main-item -->
                                 <div class="list-single-main-item fw-lmi fl-wrap" id="sec6">
                                     <div class="map-container mapC_vis mapC_vis2">
-                                        <div id="singleMap" data-latitude="40.7427837"
-                                            data-longitude="-73.11445617675781" data-maptitle="Our Location"
-                                            data-infotitle="House in Financial Distric"
-                                            data-infotext="70 Bright St New York, USA"
+                                        <div id="singleMap" data-latitude="0.3901" data-longitude="9.4544"
+                                            data-maptitle="Libreville, Gabon" data-infotitle="Ma Position"
+                                            data-infotext="Centre de Libreville"
                                             style="position: relative; overflow: hidden;">
                                             <div
                                                 style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
                                                 <div class="gm-err-container">
-                                                    <div class="gm-err-content">
-                                                        <div class="gm-err-icon"><img
-                                                                src="https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png"
-                                                                alt="" draggable="false"
-                                                                style="user-select: none;"></div>
-                                                        <div class="gm-err-title">Petit problème... Une erreur s'est
-                                                            produite</div>
-                                                        <div class="gm-err-message">Google&nbsp;Maps ne s'est pas chargé
-                                                            correctement sur cette page. Pour plus d'informations techniques
-                                                            sur cette erreur, veuillez consulter la console JavaScript.
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -218,7 +206,7 @@
                                                 <!-- Commentaire principal -->
                                                 <div class="reviews-comments-item">
                                                     <div class="review-comments-avatar">
-                                                        <img src="{{ asset($comment->client ? 'path_to_client_avatar/' . $comment->client->picture : 'path_to_owner_avatar/' . $comment->owner->picture) }}"
+                                                        <img src="{{ $comment->client->picture ?? asset('images/default-avatar.png') }}"
                                                             alt="">
                                                     </div>
                                                     <div class="reviews-comments-item-text smpar">
@@ -258,10 +246,9 @@
                                                 </div>
                                                 <!-- Réponses (si elles existent) -->
                                                 @foreach ($comment->replies as $reply)
-                                                    <div class="reviews-comments-item"
-                                                        style="margin-right: 10px; border-left: 4px solid #ffff; padding-right: 10px;">
+                                                    <div class="reviews-comments-item">
                                                         <div class="review-comments-avatar">
-                                                            <img src="{{ asset('path_to_owner_avatar/' . $reply->owner->picture) }}"
+                                                            <img src="{{ $reply->owner->picture ?? asset('images/default-avatar.png') }}"
                                                                 alt="">
                                                         </div>
                                                         <div class="reviews-comments-item-text smpar">
