@@ -9,18 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('etablishment_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('etablishment_id')->constrained('etablishments')->onDelete('cascade'); // Référence vers `establishments`
-            $table->string('image_url'); // URL de l'image
-            $table->enum('image_type', ['menu', 'plat', 'interieur', 'autre']); // Type d'image
+            $table->foreignId('etablishment_id')->constrained()->onDelete('cascade');
+            $table->string('image_path');
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('etablishment_images');
     }

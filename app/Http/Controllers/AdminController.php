@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Admin;
+use App\Models\Client;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -18,6 +19,10 @@ use App\Models\GeneralSetting;
 class AdminController extends Controller
 {
     //
+
+
+
+
     public function loginHandler(Request $request)
     {
         $fieldType = filter_var($request->login_id, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';

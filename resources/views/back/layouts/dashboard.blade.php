@@ -84,33 +84,15 @@
                 <div class="dashbard-menu-container">
                     <!-- user-profile-menu-->
                     <div class="user-profile-menu">
-                        <h3>Main</h3>
-                        <ul class="no-list-style">
-                            <li><a href="{{ route('client.home') }}"
-                                    class="dropdown-toggle no-arrow {{ Route::is('client.home') ? 'active' : '' }}"><i
-                                        class="fal fa-chart-line"></i>Dashboard</a>
-                            </li>
-                            <li><a href="{{ route('client.profile') }} " class="dropdown-toggle no-arrow"><i
-                                        class="fal fa-user-edit {{ Route::is('client.profile') ? 'active' : '' }}"></i>Profil</a>
-                            </li>
-                        </ul>
+                        <h3></h3>
+                        
                     </div>
                     <!-- user-profile-menu end-->
                     <!-- user-profile-menu-->
-                    <div class="user-profile-menu">
-                        <h3>Listings</h3>
-                        <ul class="no-list-style">
-                            <li><a href=""><i class="fal fa-th-list"></i> Mes
-                                    établissements
-                                </a>
-                            </li>
-                            <li><a href="dashboard-review.html"><i class="fal fa-comments-alt"></i> Reviews </a></li>
-                            <li><a href="dashboard-add-listing.html"><i class="fal fa-file-plus"></i> Add New</a></li>
-                        </ul>
-                    </div>
+                    
                     <!-- user-profile-menu end-->
                 </div>
-                <div class="dashbard-menu-footer"> &#169; Homeradar 2022 . All rights reserved.</div>
+                <div class="dashbard-menu-footer"> </div>
             </div>
             <!-- dashbard-menu-wrap end  -->
             <!-- content -->
@@ -119,14 +101,7 @@
                 <!-- dashboard-footer -->
                 <div class="dashboard-footer">
                     <div class="dashboard-footer-links fl-wrap">
-                        <span>Helpfull Links:</span>
-                        <ul>
-                            <li><a href="about.html">About </a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="pricing.html">Pricing Plans</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="help.html">Help Center</a></li>
-                        </ul>
+                        
                     </div>
                     <a href="#main" class="dashbord-totop  custom-scroll-link"><i class="fas fa-caret-up"></i></a>
                 </div>

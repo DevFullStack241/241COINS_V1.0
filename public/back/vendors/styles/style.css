@@ -3668,6 +3668,11 @@ body.IE .register-page-wrap .container {
     border-radius: 100%
 }
 
+ .avatar-photo1
+ {
+    border-radius: 0
+}
+
 .profile-info,
 .profile-skills,
 .profile-social {

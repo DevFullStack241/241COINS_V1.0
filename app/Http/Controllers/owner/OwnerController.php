@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Etablishment;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -40,21 +41,24 @@ class OwnerController extends Controller
 
     public function home(Request $request)
     {
-
         // Récupère uniquement les établissements de cet utilisateur
         $etablishments = Etablishment::where('owner_id', auth()->id())
             ->with('category')
             ->latest()
-            ->paginate(8); // Pagination à 6 par page
+            ->paginate(8); // Pagination à 8 par page
 
+        // Récupérer le nombre total d'établissements du propriétaire connecté
+        $totalEtablishments = Etablishment::where('owner_id', auth()->id())->count();
 
         $data = [
             'pageTitle' => 'Owner Dashboard',
-            'etablishments' => $etablishments
+            'etablishments' => $etablishments,
+            'totalEtablishments' => $totalEtablishments, // Ajout du total dans les données
         ];
 
         return view('back.pages.owner.home', $data);
     }
+
 
 
     public function createOwner(Request $request)

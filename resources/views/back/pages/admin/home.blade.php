@@ -22,7 +22,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">5</div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalClients }}</div>
                         <div class="font-14 text-secondary weight-500">
                             Total Clients
                         </div>
@@ -39,7 +39,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">11</div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalOwners }}</div>
                         <div class="font-14 text-secondary weight-500">
                             Total Propriétaires
                         </div>
@@ -56,7 +56,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">40</div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalEtablishments }}</div>
                         <div class="font-14 text-secondary weight-500">
                             Etablissements
                         </div>
@@ -73,7 +73,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">4</div>
+                        <div class="weight-700 font-24 text-dark">{{ $totalCategories }}</div>
                         <div class="font-14 text-secondary weight-500">Catégories</div>
                     </div>
                     <div class="widget-icon">
@@ -92,40 +92,32 @@
                 <div class="d-flex justify-content-between pb-10">
                     <div class="h5 mb-0">Liste des clients</div>
                     <div class="dropdown">
-                        
+
                     </div>
                 </div>
                 <div class="user-list">
                     <ul>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <div class="name-avatar d-flex align-items-center pr-2">
-                                <div class="avatar mr-2 flex-shrink-0">
-                                    <img src="vendors/images/photo1.jpg" class="border-radius-100 box-shadow" width="50"
-                                        height="50" alt="">
-                                </div>
-                                <div class="txt">
-                                    <div class="font-14 weight-600">Dr. Neil Wagner</div>
-                                    <div class="font-12 weight-500" data-color="#b2b1b6" style="color: rgb(178, 177, 182);">
-                                        Pediatrician
+                        @foreach ($clients as $client)
+                            <li class="d-flex align-items-center justify-content-between">
+                                <div class="name-avatar d-flex align-items-center pr-2">
+                                    <div class="avatar mr-2 flex-shrink-0">
+                                        <img src="{{ $client->picture ?? asset('images/default-avatar.png') }}"
+                                            class="border-radius-100 box-shadow" width="50" height="50"
+                                            alt="Avatar">
+                                    </div>
+                                    <div class="txt">
+                                        <div class="font-14 weight-600">{{ $client->name }}</div>
+                                        <div class="font-12 weight-500" data-color="#b2b1b6"
+                                            style="color: rgb(178, 177, 182);">
+                                            {{ $client->email }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <div class="name-avatar d-flex align-items-center pr-2">
-                                <div class="avatar mr-2 flex-shrink-0">
-                                    <img src="vendors/images/photo2.jpg" class="border-radius-100 box-shadow"
-                                        width="50" height="50" alt="">
-                                </div>
-                                <div class="txt">
-                                    <div class="font-14 weight-600">Dr. Ren Delan</div>
-                                    <div class="font-12 weight-500" data-color="#b2b1b6"
-                                        style="color: rgb(178, 177, 182);">
-                                        Pediatrician
-                                    </div>
-                                </div>
-                            </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
+
             </div>
         </div>
         <div class="col-lg-6 col-md-6 mb-20">
@@ -133,39 +125,30 @@
                 <div class="d-flex justify-content-between pb-10">
                     <div class="h5 mb-0">Liste des propriétaires</div>
                     <div class="dropdown">
-                        
+
                     </div>
                 </div>
                 <div class="user-list">
                     <ul>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <div class="name-avatar d-flex align-items-center pr-2">
-                                <div class="avatar mr-2 flex-shrink-0">
-                                    <img src="vendors/images/photo1.jpg" class="border-radius-100 box-shadow" width="50"
-                                        height="50" alt="">
-                                </div>
-                                <div class="txt">
-                                    <div class="font-14 weight-600">RENAMY Joél Obame</div>
-                                    <div class="font-12 weight-500" data-color="#b2b1b6" style="color: rgb(178, 177, 182);">
-                                        propriétaire
+                        @foreach ($owners as $owner)
+                            <li class="d-flex align-items-center justify-content-between">
+                                <div class="name-avatar d-flex align-items-center pr-2">
+                                    <div class="avatar mr-2 flex-shrink-0">
+                                        <img src="{{ $owner->picture ?? asset('images/default-avatar.png') }}"
+                                            class="border-radius-100 box-shadow" width="50" height="50"
+                                            alt="Avatar">
+                                    </div>
+                                    <div class="txt">
+                                        <div class="font-14 weight-600">{{ $owner->name }}</div>
+                                        <div class="font-12 weight-500" data-color="#b2b1b6"
+                                            style="color: rgb(178, 177, 182);">
+                                            {{ $owner->email }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <div class="name-avatar d-flex align-items-center pr-2">
-                                <div class="avatar mr-2 flex-shrink-0">
-                                    <img src="vendors/images/photo2.jpg" class="border-radius-100 box-shadow"
-                                        width="50" height="50" alt="">
-                                </div>
-                                <div class="txt">
-                                    <div class="font-14 weight-600">Arthur LONGORIA</div>
-                                    <div class="font-12 weight-500" data-color="#b2b1b6"
-                                        style="color: rgb(178, 177, 182);">
-                                        propriétaire
-                                    </div>
-                                </div>
-                            </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,4 @@ Route::get('/apropos', [HomeController::class, 'apropos'])->name('apropos');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/etablissement', [HomeController::class, 'etablissement'])->name('etablissement');
 Route::get('/etablissements/{id}', [HomeController::class, 'detail'])->name('etablishment.detail');
+Route::post('/etablishment/{id}/like', [LikeController::class, 'toggleLike'])->name('client.like');

@@ -6,12 +6,7 @@
             <div class="dashboard-title-item"><span>Vue</span></div>
             @livewire('admin-owner-client-header-profile-info')
         </div>
-        <div class="breadcrumbs fw-breadcrumbs smpar fl-wrap">
-            <div class="container">
-                <a href="{{ route('owner.etablishment.index') }}" class="gradient-bg dashboard-addnew_btn"> Retour <i
-                        class="fal fa-arrow-left"></i></a>
-            </div>
-        </div>
+
 
         <section class="hidden-section   single-hero-section" data-scrollax-parent="true" id="sec1">
             <div class="bg-wrap bg-parallax-wrap-gradien">
@@ -44,9 +39,17 @@
                     <div class="list-single-header-footer fl-wrap">
                         <div class="list-single-stats">
                             <ul class="no-list-style">
-                                <li><span class="viewed-counter"><i class="fas fa-eye"></i>
-                                        14 </span></li>
-                                <li><span class="bookmark-counter"><i class="fas fa-heart"></i> 24 </span></li>
+                                <li>
+                                    <span class="bookmark-counter">
+                                        <i class="fas fa-heart"></i> {{ $etablishment->likes()->count() }}
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="viewed-counter">
+                                        <i class="fas fa-thumbs-down"></i> {{ $etablishment->dislikes()->count() }}
+                                    </span>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -62,78 +65,24 @@
                         <div class="list-single-main-wrapper fl-wrap">
 
                             <div class="list-single-main-media fl-wrap" id="sec2">
-                                <!-- gallery-items   -->
-                                <div class="gallery-items grid-small-pad  list-single-gallery three-coulms lightgallery"
-                                    style="position: relative; height: 474.843px;">
-                                    <!-- 1 -->
-                                    <div class="gallery-item " style="position: absolute; left: 0px; top: 0px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/1.jpg" alt="">
-                                                <a href="images/all/1.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
+                                <!-- gallery-items -->
+                                <div class="gallery-items grid-small-pad list-single-gallery three-coulms lightgallery">
+                                    @foreach ($etablishment->images as $image)
+                                        <div class="gallery-item">
+                                            <div class="grid-item-holder">
+                                                <div class="box-item">
+                                                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="Image">
+                                                    <a href="{{ asset('storage/' . $image->image_path) }}"
+                                                        class="gal-link popup-image">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- 1 end -->
-                                    <!-- 2 -->
-                                    <div class="gallery-item" style="position: absolute; left: 235px; top: 0px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/8.jpg" alt="">
-                                                <a href="images/all/8.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 2 end -->
-                                    <!-- 3 -->
-                                    <div class="gallery-item gallery-item-second"
-                                        style="position: absolute; left: 0px; top: 158px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/3.jpg" alt="">
-                                                <a href="images/all/3.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 3 end -->
-                                    <!-- 4 -->
-                                    <div class="gallery-item" style="position: absolute; left: 470px; top: 0px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/4.jpg" alt="">
-                                                <a href="images/all/4.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 4 end -->
-                                    <!-- 5 -->
-                                    <div class="gallery-item" style="position: absolute; left: 470px; top: 158px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/5.jpg" alt="">
-                                                <a href="images/all/5.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 5 end -->
-                                    <!-- 7 -->
-                                    <div class="gallery-item" style="position: absolute; left: 470px; top: 316px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/9.jpg" alt="">
-                                                <a href="images/all/9.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 7 end -->
+                                    @endforeach
                                 </div>
                                 <!-- end gallery items -->
+
                             </div>
                             <div class="list-single-facts fl-wrap">
                             </div>
@@ -197,7 +146,7 @@
                                 <!-- list-single-main-item -->
                                 <div class="list-single-main-item fl-wrap" id="sec7">
                                     <div class="list-single-main-item-title">
-                                        <h3>Reviews <span>2</span></h3>
+                                        <h3><span></span></h3>
                                     </div>
                                     <div class="list-single-main-item_content fl-wrap">
                                         @foreach ($etablishment->comments as $comment)
@@ -214,21 +163,83 @@
                                                                 class="far fa-ellipsis-h"></i></div>
                                                         <div class="show-more-snopt-tooltip bxwt">
                                                             @if (Auth::guard('owner')->check())
-                                                                <a href="#"
+                                                                <a href="#" class="btn btn-outline-secondary"
                                                                     onclick="toggleReplyForm({{ $comment->id }})">
                                                                     <i class="fas fa-reply"></i> Répondre
                                                                 </a>
+
                                                                 <form id="reply-form-{{ $comment->id }}"
                                                                     action="{{ route('owner.owner.reply', ['id' => $comment->id]) }}"
-                                                                    method="POST"
-                                                                    style="display: none; margin-top: 10px;">
+                                                                    method="POST" class="reply-form"
+                                                                    style="display: none;">
                                                                     @csrf
-                                                                    <textarea name="content" rows="2" required class="form-control" placeholder="Votre réponse..."></textarea>
+                                                                    <div class="form-group">
+                                                                        <textarea name="content" rows="6" required class="form-control" placeholder="Votre réponse..."></textarea>
+                                                                    </div>
                                                                     <button type="submit"
-                                                                        class="btn btn-primary btn-sm mt-2">Envoyer</button>
+                                                                        class="btn btn-primary btn-sm">Envoyer</button>
                                                                 </form>
                                                             @endif
                                                         </div>
+
+                                                        <!-- CSS -->
+                                                        <style>
+                                                            .reply-form {
+                                                                margin-top: 15px;
+                                                                background-color: #f9f9f9;
+                                                                padding: 20px;
+                                                                border-radius: 8px;
+                                                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                                                                transition: all 0.3s ease;
+                                                                width: 100%;
+                                                                max-width: 600px;
+                                                                /* Limite la largeur du formulaire */
+                                                            }
+
+                                                            .reply-form .form-group {
+                                                                margin-bottom: 20px;
+                                                            }
+
+                                                            .reply-form textarea {
+                                                                border: 1px solid #ccc;
+                                                                border-radius: 5px;
+                                                                padding: 12px;
+                                                                width: 100%;
+                                                                font-size: 16px;
+                                                                resize: vertical;
+                                                                min-height: 150px;
+                                                                /* Augmente la hauteur minimale du champ de texte */
+                                                            }
+
+                                                            .reply-form button {
+                                                                background-color: #007bff;
+                                                                border: none;
+                                                                color: white;
+                                                                padding: 10px 20px;
+                                                                border-radius: 5px;
+                                                                cursor: pointer;
+                                                                transition: background-color 0.3s;
+                                                                font-size: 16px;
+                                                            }
+
+                                                            .reply-form button:hover {
+                                                                background-color: #0056b3;
+                                                            }
+
+                                                            .btn-outline-secondary {
+                                                                font-size: 16px;
+                                                                padding: 8px 16px;
+                                                                border-radius: 4px;
+                                                                border: 1px solid #ccc;
+                                                                color: #333;
+                                                                transition: background-color 0.3s;
+                                                            }
+
+                                                            .btn-outline-secondary:hover {
+                                                                background-color: #f0f0f0;
+                                                            }
+                                                        </style>
+
                                                         <h4>
                                                             <a href="#">
                                                                 {{ $comment->client ? $comment->client->name : $comment->owner->name }}
@@ -268,27 +279,6 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <!-- list-single-main-item end -->
-
-                                <!-- list-single-main-item -->
-                                {{-- <div class="list-single-main-item fl-wrap" id="sec15">
-                                    <div class="list-single-main-item-title fl-wrap">
-                                        <h3>Add Your Review</h3>
-                                    </div>
-                                    <!-- Add Review Box -->
-                                    <div id="add-review" class="add-review-box">
-                                        <!-- Review Comment -->
-                                        <form class="add-comment custom-form">
-                                            <fieldset>
-                                                <textarea cols="40" rows="3" placeholder="Your Review:"></textarea>
-                                            </fieldset>
-                                            <button class="btn big-btn color-bg float-btn">Submit Review <i
-                                                    class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                                        </form>
-                                    </div>
-                                    <!-- Add Review Box / End -->
-                                </div> --}}
-                                <!-- list-single-main-item end -->
                             </div>
                         </div>
                     </div>

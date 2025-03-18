@@ -145,6 +145,13 @@
                                 <span class="text-danger ml-2">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="col-sm-12" class="fuzone">
+                            <label>Images supplémentaires</label>
+                            <input type="file" name="images[]" accept="image/*" multiple>
+                            @error('images')
+                                <span class="text-danger ml-2">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                     <button type="submit" class="btn color-bg float-btn">Enregistrer</button>
                 </form>

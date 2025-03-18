@@ -24,10 +24,10 @@
                             <h4>Liens utiles</h4>
                         </div>
                         <ul class="footer-list fl-wrap">
-                            <li><a href="about.html">Accueil</a></li>
-                            <li><a href="blog.html">Etablissement</a></li>
-                            <li><a href="help.html">A propos</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="{{ route('home') }}">Accueil</a></li>
+                            <li><a href="{{ route('etablissement') }}">Etablissement</a></li>
+                            {{-- <li><a href="{{ route('apropos') }}">A propos</a></li> --}}
+                            <li><a href="{{ route('contact') }}">Contacts</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,10 +40,10 @@
                         </div>
                         <ul class="footer-contacts fl-wrap">
                             <li><span><i class="fal fa-envelope"></i> E-mail :</span><a href="#"
-                                    target="_blank">...............</a></li>
+                                    target="_blank">241coins@gmail.com</a></li>
                             <li> <span><i class="fal fa-map-marker"></i> Adresse :</span><a href="#"
-                                    target="_blank">Glass</a></li>
-                            <li><span><i class="fal fa-phone"></i> Téléphone :</span><a href="#">+241</a>
+                                    target="_blank">Glass, Libreville-Gabon</a></li>
+                            <li><span><i class="fal fa-phone"></i> Téléphone :</span><a href="#">+241 66904942</a>
                             </li>
                         </ul>
                     </div>

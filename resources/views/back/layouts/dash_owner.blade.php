@@ -25,7 +25,7 @@
 
 
     <!--=============== favicons ===============-->
-    <link rel="shortcut icon" href="{{ asset('back/owner/vendor/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('font_end/assets/images/logo241.png') }}">
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -99,22 +99,15 @@
                 <div class="dashbard-menu-container">
                     <!-- user-profile-menu-->
                     <div class="user-profile-menu">
-                        <h3>Main</h3>
+                        <h3>Menu</h3>
                         <ul class="no-list-style">
                             <li><a href="{{ route('owner.home') }}"
                                     class="dropdown-toggle no-arrow {{ Route::is('owner.home') ? 'active' : '' }}"><i
-                                        class="fal fa-chart-line"></i>Dashboard</a>
+                                        class="fal fa-chart-line"></i>Tableau de bord</a>
                             </li>
                             <li><a href="{{ route('owner.profile') }} " class="dropdown-toggle no-arrow"><i
                                         class="fal fa-user-edit {{ Route::is('owner.profile') ? 'active' : '' }}"></i>Profil</a>
                             </li>
-                        </ul>
-                    </div>
-                    <!-- user-profile-menu end-->
-                    <!-- user-profile-menu-->
-                    <div class="user-profile-menu">
-                        <h3>Listings</h3>
-                        <ul class="no-list-style">
                             <li><a href="{{ route('owner.etablishment.index') }}"><i class="fal fa-th-list"></i> Mes
                                     établissements
                                 </a>

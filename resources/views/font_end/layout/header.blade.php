@@ -25,9 +25,9 @@
                 <li>
                     <a href="{{ route('etablissement') }}">Etablissements</a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('apropos') }}">À propos</a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('contact') }}">Contact</a>
                 </li>

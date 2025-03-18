@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title></title>
+    <title>@yield('pageTitle')</title>
     <!-- loader-->
     <link href="{{ asset(path: 'font_end/auth/owner/assets/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset(path: 'font_end/auth/owner/assets/js/pace.min.js') }}"></script>
     <!--favicon-->
-    <link rel="icon" href="{{ asset(path: 'font_end/auth/owner/assets/images/favicon.ico') }}" type="image/x-icon">
+   <link rel="shortcut icon" href="{{ asset('font_end/assets/images/logo241.png') }}">
     <!-- Bootstrap core CSS-->
     <link href="{{ asset(path: 'font_end/auth/owner/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <!-- animate CSS-->

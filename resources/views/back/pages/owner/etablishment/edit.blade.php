@@ -148,13 +148,38 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="col-sm-12" class="fuzone">
+                        <!-- Image de couverture -->
+                        <div class="col-sm-12">
                             <label>Image de couverture</label>
+                            @if ($etablishment->cover_image)
+                                <div>
+                                    <img src="{{ asset('storage/' . $etablishment->cover_image) }}" width="150"
+                                        class="mb-2" alt="Image actuelle">
+                                </div>
+                            @endif
                             <input name="cover_image" type="file">
                             @error('cover_image')
                                 <span class="text-danger ml-2">{{ $message }}</span>
                             @enderror
                         </div>
+
+                        <!-- Images supplémentaires -->
+                        <div class="col-sm-12">
+                            <label>Images supplémentaires</label>
+                            <div class="d-flex flex-wrap">
+                                @foreach ($etablishment->images as $image)
+                                    <div class="mr-2 mb-2">
+                                        <img src="{{ asset('storage/' . $image->image_path) }}" width="100"
+                                            alt="Image">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <input type="file" name="images[]" class="form-control" multiple>
+                            @error('images')
+                                <span class="text-danger ml-2">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                     </div>
                     <button type="submit" class="btn color-bg float-btn">Mettre à jour</button>
                 </form>

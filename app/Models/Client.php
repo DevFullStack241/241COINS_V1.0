@@ -69,4 +69,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'client_id');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

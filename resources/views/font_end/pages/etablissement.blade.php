@@ -3,28 +3,27 @@
 @section('content')
     <section class="hidden-section single-par2  " data-scrollax-parent="true">
         <div class="bg-wrap bg-parallax-wrap-gradien">
-            <div class="bg par-elem " data-bg="images/bg/11.jpg" data-scrollax="properties: { translateY: '30%' }"
+            <div class="bg par-elem " data-bg="{{ asset('font_end/assets/images/bg/12.jpg') }}" data-scrollax="properties: { translateY: '30%' }"
                 style="background-image: url(&quot;images/bg/11.jpg&quot;); transform: translateZ(0px) translateY(-3.93258%);">
             </div>
         </div>
         <div class="container">
             <div class="section-title center-align big-title">
-                <h2><span>About Us</span></h2>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit amet fermentum sem.
-                </h4>
+                <h2><span>Nos établissements</span></h2>
+                
             </div>
             <div class="scroll-down-wrap">
                 <div class="mousey">
                     <div class="scroller"></div>
                 </div>
-                <span>Scroll Down To Discover</span>
+                
             </div>
         </div>
     </section>
     <div class="breadcrumbs fw-breadcrumbs sp-brd fl-wrap">
         <div class="container">
             <div class="breadcrumbs-list">
-                <a href="#">Home</a> <span>About</span>
+                
             </div>
             <div class="share-holder hid-share">
                 <a href="#" class="share-btn showshare sfcs"> <i class="fas fa-share-alt"></i> Share </a>
@@ -51,7 +50,7 @@
                 <div class="col-md-4">
                     <div class="section-title fl-wrap">
                         <h4>Parcourir les offres spéciales</h4>
-                        <h2>Derniers établissements</h2>
+                        <h2>Etablissements</h2>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -95,10 +94,6 @@
                                                 class="cat-opt color-bg">{{ $etablishment->category->name ?? 'Non spécifié' }}</a>
                                         </li>
                                     </ul>
-                                    <a href="#" class="geodir_save-btn tolt" data-microtip-position="left"
-                                        data-tooltip="Save"><span><i class="fal fa-heart"></i></span></a>
-                                    <a href="#" class="compare-btn tolt" data-microtip-position="left"
-                                        data-tooltip="Compare"><span><i class="fal fa-random"></i></span></a>
                                 </div>
                                 <div class="geodir-category-content fl-wrap">
                                     <h3 class="title-sin_item"><a
@@ -106,9 +101,7 @@
                                     </h3>
                                     <div class="geodir-category-content_price">{{ $etablishment->status }}</div>
 
-                                    <div class="geodir-category-content-details">
-                                        <p>{{ $etablishment->description }}</p>
-                                    </div>
+                                    
                                     <div class="geodir-category-footer fl-wrap">
                                         <a href="#" class="gcf-company">
                                             <img src="{{ $etablishment->owner->picture }}" alt="">

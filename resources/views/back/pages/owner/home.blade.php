@@ -5,7 +5,7 @@
     <div class="container dasboard-container">
         <!-- dashboard-title -->
         <div class="dashboard-title fl-wrap">
-            <div class="dashboard-title-item"><span>Dashboard</span></div>
+            <div class="dashboard-title-item"><span>Tableau de bord</span></div>
             @livewire('admin-owner-client-header-profile-info')
         </div>
         <!-- dashboard-title end -->
@@ -13,41 +13,11 @@
             <div class="dashboard-stats-container fl-wrap">
                 <div class="row">
                     <!--dashboard-stats-->
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="dashboard-stats fl-wrap">
-                            <i class="fal fa-map-marked"></i>
-                            <h4>Active Listings</h4>
-                            <div class="dashboard-stats-count">124</div>
-                        </div>
-                    </div>
-                    <!-- dashboard-stats end -->
-                    <!--dashboard-stats-->
-                    <div class="col-md-3">
-                        <div class="dashboard-stats fl-wrap">
-                            <i class="fal fa-chart-bar"></i>
-                            <h4>Listing Views</h4>
-                            <div class="dashboard-stats-count">1056<span>(<strong>+356</strong> this
-                                    week)</span></div>
-                        </div>
-                    </div>
-                    <!-- dashboard-stats end -->
-                    <!--dashboard-stats-->
-                    <div class="col-md-3">
-                        <div class="dashboard-stats fl-wrap">
-                            <i class="fal fa-comments-alt"></i>
-                            <h4>Your Reviews</h4>
-                            <div class="dashboard-stats-count">357<span>(<strong>+12</strong> this
-                                    week)</span></div>
-                        </div>
-                    </div>
-                    <!-- dashboard-stats end -->
-                    <!--dashboard-stats-->
-                    <div class="col-md-3">
-                        <div class="dashboard-stats fl-wrap">
-                            <i class="fal fa-heart"></i>
-                            <h4>Times Bookmarked</h4>
-                            <div class="dashboard-stats-count">2329<span>(<strong>+234</strong> this
-                                    week)</span></div>
+                            <i class="fas fa-building"></i>
+                            <h4>Nombre total de vos établissements</h4>
+                            <div class="dashboard-stats-count">{{ $totalEtablishments }}</div>
                         </div>
                     </div>
                     <!-- dashboard-stats end -->
@@ -80,14 +50,6 @@
                                                     <span>{{ $etablishment->address }}</span></a>
                                             </div>
                                             <div class="clearfix"></div>
-                                            <div class="listing-rating card-popup-rainingvis tolt"
-                                                data-microtip-position="right" data-tooltip="Good"
-                                                data-starrating2="{{ $etablishment->note }}">
-                                                @for ($i = 1; $i <= 3; $i++)
-                                                    <i
-                                                        class="fas fa-star {{ $i <= $etablishment->note ? 'active' : '' }}"></i>
-                                                @endfor
-                                            </div>
                                             <div class="dashboard-listings-item_opt">
                                                 <ul>
                                                     <li><a href="{{ route('owner.etablishment.edit', $etablishment->id) }}"

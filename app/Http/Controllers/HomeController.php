@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Etablishment;
+use App\Models\Like;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 
@@ -52,14 +53,18 @@ class HomeController extends Controller
     public function detail($id)
     {
         $etablishment = Etablishment::with('category')->findOrFail($id);
+        // Récupérer les propriétaires
 
+        $clientReaction = null;
+        $likes = Like::where('etablishment_id', $etablishment->id)->where('type', 'like')->count();
+        $dislikes = Like::where('etablishment_id', $etablishment->id)->where('type', 'dislike')->count();
 
         // Charger les commentaires avec les auteurs (clients et propriétaires)
         $etablishment->load(['comments' => function ($query) {
             $query->with('client', 'owner')->orderBy('created_at', 'desc');
         }]);
 
-        return view('font_end.pages.detail', compact('etablishment'));
+        return view('font_end.pages.detail', compact('etablishment', 'clientReaction', 'likes', 'dislikes'));
     }
 
     public function etablissement()

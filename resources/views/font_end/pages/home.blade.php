@@ -22,12 +22,12 @@
                     <!--  slideshow-item end  -->
                     <!-- slideshow-item -->
                     <div class="slideshow-item">
-                        <div class="bg" data-bg="{{ asset('font_end/assets/images/bg/17.jpg') }}"></div>
+                        <div class="bg" data-bg="{{ asset('font_end/assets/images/bg/12.jpg') }}"></div>
                     </div>
                     <!--  slideshow-item end  -->
                     <!-- slideshow-item -->
                     <div class="slideshow-item">
-                        <div class="bg" data-bg="{{ asset('font_end/assets/images/bg/12.jpg') }}"></div>
+                        <div class="bg" data-bg="{{ asset('font_end/assets/images/bg/17.jpg') }}"></div>
                     </div>
                     <!--  slideshow-item end  -->
                 </div>
@@ -88,10 +88,6 @@
                                                 class="cat-opt color-bg">{{ $etablishment->category->name ?? 'Non spécifié' }}</a>
                                         </li>
                                     </ul>
-                                    <a href="#" class="geodir_save-btn tolt" data-microtip-position="left"
-                                        data-tooltip="Save"><span><i class="fal fa-heart"></i></span></a>
-                                    <a href="#" class="compare-btn tolt" data-microtip-position="left"
-                                        data-tooltip="Compare"><span><i class="fal fa-random"></i></span></a>
                                 </div>
                                 <div class="geodir-category-content fl-wrap">
                                     <h3 class="title-sin_item"><a
@@ -99,9 +95,7 @@
                                     </h3>
                                     <div class="geodir-category-content_price">{{ $etablishment->status }}</div>
 
-                                    <div class="geodir-category-content-details">
-                                        <p>{{ $etablishment->description }}</p>
-                                    </div>
+                                    
                                     <div class="geodir-category-footer fl-wrap">
                                         <a href="#" class="gcf-company">
                                             <img src="{{ $etablishment->owner->picture }}" alt="">
@@ -220,8 +214,7 @@
 
         <div class="container">
             <div class="section-title st-center fl-wrap">
-                <h4>Testimonilas</h4>
-                <h2>What Our Clients Say</h2>
+                
             </div>
         </div>
         <div class="clearfix"></div>

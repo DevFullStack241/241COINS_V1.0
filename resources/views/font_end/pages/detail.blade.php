@@ -32,8 +32,17 @@
                     <div class="list-single-header-footer fl-wrap">
                         <div class="list-single-stats">
                             <ul class="no-list-style">
-                                <li><span class="viewed-counter"><i class="fas fa-eye"></i> Viewed - 156 </span></li>
-                                <li><span class="bookmark-counter"><i class="fas fa-heart"></i> Bookmark - 24 </span></li>
+                                <li>
+                                    <span class="bookmark-counter">
+                                        <i class="fas fa-heart"></i> {{ $etablishment->likes()->count() }}
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="viewed-counter">
+                                        <i class="fas fa-thumbs-down"></i> {{ $etablishment->dislikes()->count() }}
+                                    </span>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -42,7 +51,25 @@
         </section>
         <div class="breadcrumbs fw-breadcrumbs smpar fl-wrap">
             <div class="container">
-                <div class="like-btn"><i class="fas fa-heart"></i> Save</div>
+                @if (auth('client')->check())
+                    <form action="{{ route('client.like', $etablishment->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="type" value="dislike">
+                        <button type="submit" class="like-btn {{ $clientReaction === 'dislike' ? 'active' : '' }}">
+                            <i class="fas fa-thumbs-down"></i> Je n'aime pas
+                        </button>
+                    </form>
+
+                    <form action="{{ route('client.like', $etablishment->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="type" value="like">
+                        <button type="submit" class="like-btn {{ $clientReaction === 'like' ? 'active' : '' }}">
+                            <i class="fas fa-heart"></i> J'aime
+                        </button>
+                    </form>
+                @else
+                    <p class="text-danger">Connectez-vous pour liker cet établissement.</p>
+                @endif
             </div>
         </div>
         <div class="gray-bg small-padding fl-wrap">
@@ -81,76 +108,21 @@
                             </div>
                             <!--  scroll-nav-wrap end-->
                             <div class="list-single-main-media fl-wrap" id="sec2">
-                                <!-- gallery-items   -->
-                                <div class="gallery-items grid-small-pad  list-single-gallery three-coulms lightgallery"
-                                    style="position: relative; height: 474.825px;">
-                                    <!-- 1 -->
-                                    <div class="gallery-item " style="position: absolute; left: 0px; top: 0px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/1.jpg" alt="">
-                                                <a href="images/all/1.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
+                                <!-- gallery-items -->
+                                <div class="gallery-items grid-small-pad list-single-gallery three-coulms lightgallery">
+                                    @foreach ($etablishment->images as $image)
+                                        <div class="gallery-item">
+                                            <div class="grid-item-holder">
+                                                <div class="box-item">
+                                                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="Image">
+                                                    <a href="{{ asset('storage/' . $image->image_path) }}"
+                                                        class="gal-link popup-image">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- 1 end -->
-                                    <!-- 2 -->
-                                    <div class="gallery-item" style="position: absolute; left: 235px; top: 0px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/8.jpg" alt="">
-                                                <a href="images/all/8.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 2 end -->
-                                    <!-- 3 -->
-                                    <div class="gallery-item gallery-item-second"
-                                        style="position: absolute; left: 0px; top: 158px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/3.jpg" alt="">
-                                                <a href="images/all/3.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 3 end -->
-                                    <!-- 4 -->
-                                    <div class="gallery-item" style="position: absolute; left: 470px; top: 0px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/4.jpg" alt="">
-                                                <a href="images/all/4.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 4 end -->
-                                    <!-- 5 -->
-                                    <div class="gallery-item" style="position: absolute; left: 470px; top: 158px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/5.jpg" alt="">
-                                                <a href="images/all/5.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 5 end -->
-                                    <!-- 7 -->
-                                    <div class="gallery-item" style="position: absolute; left: 470px; top: 316px;">
-                                        <div class="grid-item-holder">
-                                            <div class="box-item">
-                                                <img src="images/all/9.jpg" alt="">
-                                                <a href="images/all/9.jpg" class="gal-link popup-image"><i
-                                                        class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 7 end -->
+                                    @endforeach
                                 </div>
                                 <!-- end gallery items -->
                             </div>
@@ -183,25 +155,7 @@
                                                 </li>
                                                 <li><span>Téléphone Service:</span>{{ $etablishment->phone_service }}</li>
                                                 <li><span>Site Web:</span>{{ $etablishment->website }}</li>
-                                                <table border="1">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><span>Jours:</span></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (explode(',', $etablishment->opening_hours) as $day_hours)
-                                                            @php
-                                                                $parts = explode(':', $day_hours, 2);
-                                                            @endphp
-                                                            <tr>
-                                                                <td><span>{{ trim($parts[0]) }}</span></td>
-                                                                <td><span>{{ trim($parts[1] ?? '') }}</span></td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-
+                                                <li><span>Jours et Heures:</span>{{ $etablishment->opening_hours }}</li>
                                                 <li><span>Services:</span>{{ $etablishment->services }}</li>
                                             </ul>
                                         </div>
@@ -211,15 +165,14 @@
                                 <!-- list-single-main-item -->
                                 <div class="list-single-main-item fw-lmi fl-wrap" id="sec6">
                                     <div class="map-container mapC_vis mapC_vis2">
-                                        <div id="singleMap" data-latitude="0.3901"
-                                            data-longitude="9.4544" data-maptitle="Libreville, Gabon"
-                                            data-infotitle="Ma Position"
+                                        <div id="singleMap" data-latitude="0.3901" data-longitude="9.4544"
+                                            data-maptitle="Libreville, Gabon" data-infotitle="Ma Position"
                                             data-infotext="Centre de Libreville"
                                             style="position: relative; overflow: hidden;">
                                             <div
                                                 style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
                                                 <div class="gm-err-container">
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -233,7 +186,7 @@
                                 <!-- list-single-main-item -->
                                 <div class="list-single-main-item fl-wrap" id="sec7">
                                     <div class="list-single-main-item-title">
-                                        <h3>Commentaires <span>{{ $etablishment->comments->count() }}</span></h3>
+                                        <h3>Commentaires <span></span></h3>
                                     </div>
                                     <div class="list-single-main-item_content fl-wrap">
                                         <div class="reviews-comments-wrap fl-wrap">
@@ -346,7 +299,7 @@
                                             <h4><a href="#">{{ $etablishment->owner->name ?? 'Inconnu' }}</a>
                                             </h4>
                                             <div class="clearfix"></div>
-                                            <div class="pwh_counter"><span>22</span>Property Listings</div>
+                                            {{-- <div class="pwh_counter"><span>22</span>Property Listings</div> --}}
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>

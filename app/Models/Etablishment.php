@@ -54,8 +54,21 @@ class Etablishment extends Authenticatable
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Relation avec les images supplémentaires
+     */
     public function images()
     {
-        return $this->hasMany(Etablishment_image::class);
+        return $this->hasMany(EtablishmentImage::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class)->where('type', 'like');
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany(Like::class)->where('type', 'dislike');
     }
 }

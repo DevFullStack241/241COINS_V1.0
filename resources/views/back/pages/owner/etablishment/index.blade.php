@@ -35,12 +35,6 @@
                                             <span>{{ $etablishment->address }}</span></a>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <div class="listing-rating card-popup-rainingvis tolt" data-microtip-position="right"
-                                        data-tooltip="Good" data-starrating2="{{ $etablishment->note }}">
-                                        @for ($i = 1; $i <= 3; $i++)
-                                            <i class="fas fa-star {{ $i <= $etablishment->note ? 'active' : '' }}"></i>
-                                        @endfor
-                                    </div>
                                     <div class="dashboard-listings-item_opt">
                                         <ul>
                                             <li><a href="{{ route('owner.etablishment.edit', $etablishment->id) }}"

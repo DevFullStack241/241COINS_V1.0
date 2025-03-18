@@ -5,7 +5,7 @@
     <div class="container dasboard-container">
         <!-- dashboard-title -->
         <div class="dashboard-title fl-wrap">
-            <div class="dashboard-title-item"><span>Edit Profile</span></div>
+            <div class="dashboard-title-item"><span>Modifier mon profile</span></div>
             @livewire('admin-owner-client-header-profile-info')
         </div>
         @livewire('owner.owner-profile')

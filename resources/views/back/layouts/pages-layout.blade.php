@@ -189,12 +189,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.owner.index') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.owner.index') ? 'active' : '' }}">
                             <span class="micon bi bi-person"></span><span class="mtext">Propriétaires</span>
                         </a>
                     </li>
                     <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.client.index') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.client.index') ? 'active' : '' }}">
                             <span class="micon bi bi-people"></span><span class="mtext">Clients</span>
                         </a>
                     </li>
@@ -205,13 +207,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.etablishment.index') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.etablishment.index') ? 'active' : '' }}">
                             <span class="micon bi bi-building"></span><span class="mtext">Etablissements</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="calendar.html" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-star"></span><span class="mtext">Avis</span>
                         </a>
                     </li>
                 </ul>

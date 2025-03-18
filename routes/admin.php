@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\CategorieController;
+use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\EtablishmentController;
-use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\OwnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Models\Admin;
@@ -19,7 +21,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function () {
-        Route::view('/home', 'back.pages.admin.home')->name('home');
+        Route::get('/home', [HomeController::class, 'home'])->name('home');
         Route::post('/logout_handler', [AdminController::class, 'logoutHandler'])->name('logout_handler');
         Route::get('/profile', [AdminController::class, 'profileView'])->name('profile');
         Route::post('/change-profile-picture', [AdminController::class, 'changeProfilePicture'])->name('change-profile-picture');
@@ -56,9 +58,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
         //AVIS ROUTES
-        Route::prefix('avis')->name('avis.')->group(function () {
+        Route::prefix('owner')->name('owner.')->group(function () {
 
-            Route::controller(ReviewController::class)->group(function () {
+            Route::controller(OwnerController::class)->group(function () {
+                Route::get('/index', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/show/{id}', 'show')->name('show');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::put('/update/{id}', 'update')->name('update');
+                Route::delete('/delete/{id}', 'destroy')->name('delete');
+            });
+        });
+
+        //AVIS ROUTES
+        Route::prefix('client')->name('client.')->group(function () {
+
+            Route::controller(ClientController::class)->group(function () {
                 Route::get('/index', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');

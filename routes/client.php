@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\ClientController;
-
-
+use App\Http\Controllers\LikeController;
 
 Route::prefix('client')->name('client.')->group(function () {
 
@@ -32,5 +31,9 @@ Route::prefix('client')->name('client.')->group(function () {
             Route::post('/etablishment/{id}/comment', [ClientController::class, 'addComment'])->name('client.comment');
             Route::post('/comment/{id}/reply', [ClientController::class, 'replyToComment'])->name('client.reply');
         });
+    });
+
+    Route::middleware(['auth:client', 'PreventBackHistory'])->group(function () {
+        Route::post('/etablishment/{id}/like', [LikeController::class, 'toggleLike'])->name('client.like');
     });
 });
